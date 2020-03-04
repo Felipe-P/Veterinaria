@@ -1,0 +1,83 @@
+CREATE TABLE IF NOT EXISTS administrador (
+  	id_administrador int(11) NOT NULL AUTO_INCREMENT,
+  	nombre varchar(45) NOT NULL,
+  	apellido varchar(45) NOT NULL,
+  	correo varchar(45) NOT NULL,
+  	clave varchar(45) NOT NULL,
+  	PRIMARY KEY (id_administrador)
+);
+
+INSERT INTO administrador (nombre, apellido, correo, clave) VALUES
+	('Felipe', 'Poveda', '100@100.com', md5('100'));
+
+CREATE TABLE IF NOT EXISTS cliente(
+    	id_cliente int NOT NULL AUTO_INCREMENT ,
+    	nombre varchar (45) NOT NULL,
+    	apellido varchar (45) NOT NULL,
+    	correo varchar (45) NOT NULL,
+    	clave varchar(45) NOT NULL,
+    	cedula int NOT NULL,
+    	PRIMARY KEY (id_cliente)
+);
+
+CREATE TABLE IF NOT EXISTS tipo_mascota(
+	id_tipo int NOT NULL AUTO_INCREMENT,
+    	nombre varchar (45) NOT NULL,
+    	PRIMARY KEY (id_tipo)
+);
+
+CREATE TABLE IF NOT EXISTS mascota(
+	id_mascota int NOT NULL AUTO_INCREMENT,
+    	nombre varchar (45) NOT NULL,
+    	sexo varchar (45) NOT NULL,
+    	peso varchar (45) NOT NULL,
+	fecha_nacimiento DATE,
+    	cliente int,
+	tipo int,
+    	PRIMARY KEY (id_mascota),
+    	FOREIGN KEY (cliente) REFERENCES cliente (id_cliente),
+    	FOREIGN KEY (tipo) REFERENCES tipo_mascota (id_tipo)
+);
+
+CREATE TABLE IF NOT EXISTS tipo_estado(
+    	id_estado int AUTO_INCREMENT NOT NULL,
+    	nombre varchar (40) NOT NULL,
+    	PRIMARY KEY (id_estado)
+);
+
+CREATE TABLE IF NOT EXISTS veterinario(
+    	id_medico int AUTO_INCREMENT NOT NULL,
+    	nombre varchar (45) NOT NULL,
+    	apellido varchar (45) NOT NULL,
+    	correo varchar (45) NOT NULL,
+    	clave varchar(45) NOT NULL,
+    	especialidad int,
+	PRIMARY KEY (id_medico);
+);
+
+CREATE TABLE IF NOT EXISTS valoracion(
+    	id_valoracion int AUTO_INCREMENT NOT NULL,
+    	nombre varchar (45) NOT NULL,
+    	descripcion varchar (45) NOT NULL,
+    	estado int,
+	mascota int,
+	veterinario,
+	PRIMARY KEY (id_valoracion),
+	FOREIGN KEY (estado) REFERENCES tipo_estado (id_estado),
+    	FOREIGN KEY (mascota) REFERENCES tipo_mascota (id_mascota),
+	FOREIGN KEY (veterinario) REFERENCES veterinario (id_veterinario)
+);
+
+CREATE TABLE IF NOT EXISTS especialidad(
+    	id_especialidad int AUTO_INCREMENT NOT NULL,
+    	nombre varchar (45) NOT NULL,
+    	PRIMARY KEY (id_especialidad)
+);
+
+CREATE TABLE IF NOT EXISTS reporte_clinico(
+
+    
+);
+
+
+
