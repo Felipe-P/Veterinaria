@@ -2,9 +2,9 @@
 session_start();
 require 'logica/Persona.php';
 require 'logica/Administrador.php';
-require 'logica/Cliente.php';
 require 'logica/Veterinario.php';
-require 'logica/auxiliar.php';
+require 'logica/Auxiliar.php';
+require 'logica/Cliente.php';
 ?>
 
 <head>

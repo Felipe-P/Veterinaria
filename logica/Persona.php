@@ -1,5 +1,6 @@
 <?php
 class Persona {
+    
     protected $id;
     protected $nombre;
     protected $apellido;
@@ -21,11 +22,11 @@ class Persona {
     function getCorreo(){
         return $this -> correo;
     }
+    
     function getClave(){
         return $this -> clave;
     }
-    
-    
+        
     function Persona ($id, $nombre, $apellido, $correo, $clave){
         $this -> id = $id;
         $this -> nombre = $nombre;
