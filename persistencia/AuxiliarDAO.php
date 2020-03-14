@@ -26,7 +26,7 @@ class AuxiliarDAO{
                 WHERE correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
-    function consultar() {
+    function consultar(){
         return "SELECT nombre, apellido, correo
                 FROM auxiliar
                 WHERE id_cliente =" . $this -> id;
@@ -35,7 +35,7 @@ class AuxiliarDAO{
     function existeCorreo(){
         return "SELECT id_auxiliar
                 FROM auxiliar
-                WHERE correo = '" . $this->correo . "'";
+                WHERE correo = '" . $this -> correo . "'";
     }
     
     function consultarTodos(){

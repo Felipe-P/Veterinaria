@@ -28,7 +28,7 @@ class ClienteDAO{
                 WHERE correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
     
-    function consultar() {
+    function consultar(){
         return "SELECT nombre, apellido, correo, cedula
                 FROM cliente
                 WHERE id_cliente =" . $this -> id;
@@ -37,7 +37,7 @@ class ClienteDAO{
     function existeCorreo(){
         return "SELECT id_cliente 
                 FROM cliente
-                WHERE correo = '" . $this->correo . "'";
+                WHERE correo = '" . $this -> correo . "'";
     }
     
     function consultarTodos(){

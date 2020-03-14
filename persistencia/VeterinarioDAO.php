@@ -28,7 +28,7 @@ class VeterinarioDAO{
                 WHERE correo = '" . $this -> correo . "' and clave = md5('" . $this -> especialidad . "')";
     }
     
-    function consultar() {
+    function consultar(){
         return "SELECT nombre, apellido, correo, especialidad
                 FROM veterinario
                 WHERE id_veterinario =" . $this -> id;
@@ -37,7 +37,7 @@ class VeterinarioDAO{
     function existeCorreo(){
         return "SELECT id_veterinario
                 FROM veterinario
-                WHERE correo = '" . $this->correo . "'";
+                WHERE correo = '" . $this -> correo . "'";
     }
     
     function consultarTodos(){
