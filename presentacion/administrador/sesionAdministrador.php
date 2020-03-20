@@ -4,9 +4,7 @@
 	$administrador -> consultar();
 	include 'presentacion/administrador/menuAdministrador.php';
 ?>
-<div class="container">
-	<div class="row">
-		<div class="col-12">
+		<div class="col-8 mt-4">
 			<div class="card">
 				<div class="card-header bg-primary text-white">Bienvenido Administrador</div>
 				<div class="card-body">
@@ -16,5 +14,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+<!-- 	</div> -->
 </div>
