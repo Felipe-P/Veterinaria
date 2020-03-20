@@ -1,7 +1,7 @@
 <div class="container">
-	<div class="row">
-			<?php include 'encabezado.php';?>
-	</div>
+<div class="row">
+		<div class="col-12"><?php include 'encabezado.php';?></div>
+		</div>
 	<div class="row">
     	<div class="col-sm text-white">.</div>
     </div>
@@ -39,7 +39,7 @@
 		<div class="col-4">
 			<div class="card">
 			<div class="row"> </div>
-				<div class="card-header bg-info text-white">Inicio de Sesion</div>
+				<div class="card-header bg-dark text-white">Inicio de Sesion</div>
 				<div class="card-body">
 					<?php
 					if (isset($_GET['error'])) {
@@ -55,7 +55,7 @@
 						<div class="form-group">
 							<input type="password" name="clave" class="form-control" placeholder="Clave" required="required">
 						</div>
-						<button type="submit" class="btn btn-info">Ingresar</button>
+						<button type="submit" class="btn btn-dark">Ingresar</button>
 					</form>
 				</div>
 			</div>

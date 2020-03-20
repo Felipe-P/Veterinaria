@@ -1,41 +1,67 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand"
-		href="index.php?pid=<?php echo base64_encode("presentacion/administrador/sesionAdministrador.php")?>"><i
-		class="fas fa-home"></i></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> Registrar </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/registrarVeterinario.php")?>">Veterinario</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/registrarAuxiliar.php")?>">Auxiliar</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/registrarCliente.php")?>">Cliente</a>
-				</div>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false"> Consultar </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarVeterinario.php")?>">Veterinario</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarAuxiliar.php")?>">Auxiliar</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/consultarCliente.php")?>">Cliente</a>
-					</div>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="index.php">Salida</a></li>
-		</ul>
-		<span class="navbar-text">
-      Administrador: <?php echo $administrador -> getNombre() . " " . $administrador -> getApellido() ?> 
-    </span>
-	</div>
+<nav class="navbar is-white">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="index.php?pid=<?php echo base64_encode(administrador/sesionAdministrador.php)?>">
+      <img src="img/Logo.png" alt="Logotipo perron" width="65px" height="35px">
+      <span class="navbar-text">Veterinaria Felipe y Stiven S.A</span>
+    </a>
+    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          
+          <p class="control">
+            <span class="navbar-text">
+      Administrador: <?php echo $administrador -> getNombre() . " " . $administrador -> getApellido() ?>  </span>
+          </p>
+          <p class="control">
+            <a class="bd-tw-button button" href="index.php" >
+              <span>
+                Salida
+              </span>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
+<!-- <div class="Container"> -->
+	<div class="row">
+	<div class="col-3">
+	<div class="card">
+	<div class="card-body">
+		
+			<aside class="menu">
+				<p class="menu-label">General</p>
+				<ul class="menu-list">
+					<li><a>Dashboard</a></li>
+					<li><a>Customers</a></li>
+				</ul>
+				<p class="menu-label">Administration</p>
+				<ul class="menu-list">
+					<li><a>Team Settings</a></li>
+					<li><a class="is-active">Manage Your Team</a>
+						<ul>
+							<li><a>Members</a></li>
+							<li><a>Plugins</a></li>
+							<li><a>Add a member</a></li>
+						</ul></li>
+					<li><a>Invitations</a></li>
+					<li><a>Cloud Storage Environment Settings</a></li>
+					<li><a>Authentication</a></li>
+				</ul>
+				<p class="menu-label">Transactions</p>
+				<ul class="menu-list">
+					<li><a>Payments</a></li>
+					<li><a>Transfers</a></li>
+					<li><a>Balance</a></li>
+				</ul>
+			</aside>
+		</div>
+		</div>
+	</div>
