@@ -39,12 +39,13 @@ include 'presentacion/administrador/menuAdministrador.php';
                     echo "<td>" . $c->getApellido() . "</td>";
                     echo "<td>" . $c->getCorreo() . "</td>";
                     echo "<td>" . $c->getCedula() . "</td>";
-                    echo "<td>" . "<a href='modalCliente.php?idCliente=" . $c->getId() . "' data-toggle='modal' data-target='#modalCliente' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
+                    echo "<td>" . "
+                                   <a href='indexAjax.php?pid=". base64_encode("presentacion/cliente/modalCliente.php") . "&idCliente=" . $c -> getId() . "' data-toggle='modal' data-target='#modalCliente' >
+                                        <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                    <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/cliente/actualizarCliente.php") . "&idCliente=" . $c->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
                                    <a class='fas fa-paw' href='index.php?pid=".base64_encode("presentacion/mascota/consultarMascota.php") ."&idCliente=".$c->getId()."&who=a' data-toggle='tooltip' data-placement='left' title='Ver mascotas'> </a>
                            </td>";
-                    echo "</tr>";
-                
+                    echo "</tr>";                
                 }
                 echo "<tr><td colspan='6'>" . count($clientes) . " registros encontrados</td></tr>"?>
 						</tbody>
@@ -54,8 +55,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="modal fade" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" >
@@ -63,6 +62,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
+
 <script>
 	$('body').on('show.bs.modal', '.modal', function (e) {
 		var link = $(e.relatedTarget);
@@ -73,7 +73,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#filtrar").keyup(function(){
-		
 	var filtroDato=$("#filtrar").val();
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/cliente/buscarClienteAjax.php") ."&filtro=\"+filtroDato;\n"; ?>
 		$("#resultadosClientes").load(ruta);

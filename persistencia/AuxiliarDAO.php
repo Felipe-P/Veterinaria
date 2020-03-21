@@ -6,34 +6,29 @@ class AuxiliarDAO{
     private $apellido;
     private $correo;
     private $clave;
-    private $disponible;
+    private $disponibilidad;
     
-    function AuxiliarDAO($id="", $nombre="", $apellido="", $correo="", $clave="", $disponible=""){
+    function AuxiliarDAO($id="", $nombre="", $apellido="", $correo="", $clave="", $disponibilidad=""){
         $this -> id = $id;
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
         $this -> correo = $correo;
         $this -> clave = $clave;
-        $this -> disponible= $disponible;
+        $this -> disponibilidad = $disponibilidad;
     }
     
     function registrar(){
         return "INSERT INTO auxiliar (nombre, apellido, correo, clave)
                 VALUES ('" . $this -> nombre . "', '" . $this -> apellido . "', '" . $this -> correo . "', md5('" . $this -> clave . "'))";
     }
+    
     function actualizar(){
         return "update auxiliar set
                 nombre = '" . $this -> nombre . "',
                 apellido='" . $this -> apellido . "',
                 where idauxiliar=" . $this -> id;
     }
-    function filtrar($filtro){
-        return "select idauxiliar ,nombre, apellido, correo, disponible
-                from auxiliar
-                where nombre like '%".$filtro."%'
-                    or apellido like '%".$filtro."%'
-                order by apellido";
-    }
+    
     function autenticar(){
         return "SELECT idauxiliar
                 FROM auxiliar
@@ -41,7 +36,7 @@ class AuxiliarDAO{
     }
     
     function consultar(){
-        return "SELECT nombre, apellido, correo, disponible
+        return "SELECT nombre, apellido, correo, disponibilidad
                 FROM auxiliar
                 WHERE idauxiliar =" . $this -> id;
     }
@@ -53,8 +48,16 @@ class AuxiliarDAO{
     }
     
     function consultarTodos(){
-        return "SELECT idauxiliar, nombre, apellido, correo, disponible
+        return "SELECT idauxiliar, nombre, apellido, correo, disponibilidad
                 FROM auxiliar";
+    }
+    
+    function filtrar($filtro){
+        return "select idauxiliar ,nombre, apellido, correo, disponibilidad
+                from auxiliar
+                where nombre like '%".$filtro."%'
+                    or apellido like '%".$filtro."%'
+                order by apellido";
     }
 }
 

@@ -32,22 +32,24 @@ include 'presentacion/administrador/menuAdministrador.php';
 						</thead>
 						<tbody id="resultadosVeterinarios">
 						<?php
-                foreach ($veterinarios as $v) {
-                    echo "<tr>";
-                    echo "<td>" . $v->getId() . "</td>";
-                    echo "<td>" . $v->getNombre() . "</td>";
-                    echo "<td>" . $v->getApellido() . "</td>";
-                    echo "<td>" . $v->getCorreo() . "</td>";
-                    echo "<td>" . $v->getEspecialidad() . "</td>";
-                    echo "<td>" . "<span class='fas " . ($v->getDsiponible()==0?"fa-check-circle":"fa-times-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($v->getDsiponible()==0?"Disponible":"No Disponible") . "' ></span>"."</td>";
-                    echo "<td>" . "<a href='modalVeterinario.php?idVeterinarior=" . $v->getId() . "' data-toggle='modal' data-target='#modalVeterinario' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                                   <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/veterinario/actualizarVeterinario.php") . "&idVeterinario=" . $v->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                   <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/veterinario/pdfVeterinario.php") ."&idVeterinario=".$v->getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
-                           </td>";
-                    echo "</tr>";
-                
-                }
-                echo "<tr><td colspan='6'>" . count($veterinarios) . " registros encontrados</td></tr>"?>
+                        foreach ($veterinarios as $v) {
+                            echo "<tr>";
+                            echo "<td>" . $v -> getId() . "</td>";
+                            echo "<td>" . $v -> getNombre() . "</td>";
+                            echo "<td>" . $v -> getApellido() . "</td>";
+                            echo "<td>" . $v -> getCorreo() . "</td>";
+                            echo "<td>" . $v -> getEspecialidad() . "</td>";
+                            echo "<td>" . "<span class='fas " . ($v -> getDsiponibilidad() == 1?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($v -> getDsiponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
+                            echo "<td>" . "
+                                           <a href='indexAjax.php?pid=". base64_encode("presentacion/veterinario/modalVeterinario.php") . "&idVeterinario=" . $v -> getId() . "' data-toggle='modal' data-target='#modalVeterinario' >
+                                                <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
+                                           <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/veterinario/actualizarVeterinario.php") . "&idVeterinario=" . $v -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
+                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/veterinario/pdfVeterinario.php") ."&idVeterinario=".$v -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
+                                   </td>";
+                            echo "</tr>";
+                        
+                        }
+                        echo "<tr><td colspan='6'>" . count($veterinarios) . " registros encontrados</td></tr>"?>
 						</tbody>
 					</table>
 				</div>
@@ -55,8 +57,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="modal fade" id="modalVeterinario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" >
@@ -64,6 +64,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
+
 <script>
 	$('body').on('show.bs.modal', '.modal', function (e) {
 		var link = $(e.relatedTarget);

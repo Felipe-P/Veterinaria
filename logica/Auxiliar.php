@@ -4,19 +4,19 @@ require_once 'persistencia/Conexion.php';
 
 class Auxiliar extends Persona{
     
-    private $disponible;
+    private $disponibilidad;
     private $auxiliarDAO;
     private $conexion;
     
-    
-    function getDsiponible(){
-        return $this -> disponible;
+    function getDisponibilidad(){
+        return $this -> disponibilidad;
     }
-    function Auxiliar($id="", $nombre="", $apellido="", $correo="", $clave="",$disponible=""){
+    
+    function Auxiliar($id="", $nombre="", $apellido="", $correo="", $clave="", $disponibilidad=""){
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
-        $this -> disponible = $disponible;
+        $this -> disponibilidad = $disponibilidad;
         $this -> conexion = new Conexion();
-        $this -> auxiliarDAO = new AuxiliarDAO($id, $nombre, $apellido, $correo, $clave, $disponible );
+        $this -> auxiliarDAO = new AuxiliarDAO($id, $nombre, $apellido, $correo, $clave, $disponibilidad );
     }
     
     function filtro($filtro){
@@ -37,11 +37,13 @@ class Auxiliar extends Persona{
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> registrar());
         $this -> conexion -> cerrar();
     }
+    
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizar());
         $this -> conexion -> cerrar();
     }
+    
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> autenticar());
@@ -63,7 +65,7 @@ class Auxiliar extends Persona{
         $this -> nombre = $resultado[0];
         $this -> apellido = $resultado[1];
         $this -> correo = $resultado[2];
-        $this -> disponible = $resultado[3];
+        $this -> disponibilidad = $resultado[3];
         $this -> conexion -> cerrar();
     }
     

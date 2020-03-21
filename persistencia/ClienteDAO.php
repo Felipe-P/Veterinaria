@@ -27,6 +27,7 @@ class ClienteDAO{
                 FROM cliente
                 WHERE correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
+    
     function actualizar(){
         return "update cliente set
                 nombre = '" . $this -> nombre . "',
@@ -35,13 +36,6 @@ class ClienteDAO{
                 where idcliente=" . $this -> id;
     }
     
-    function filtrar($filtro){
-        return "select idcliente,nombre, apellido, correo, cedula
-                from cliente
-                where nombre like '%".$filtro."%'
-                    or apellido like '%".$filtro."%'
-                order by apellido";
-    }
     function consultar(){
         return "SELECT nombre, apellido, correo, cedula
                 FROM cliente
@@ -57,6 +51,14 @@ class ClienteDAO{
     function consultarTodos(){
         return "SELECT idcliente, nombre, apellido, correo, cedula
                 FROM cliente";
+    }
+    
+    function filtrar($filtro){
+        return "select idcliente,nombre, apellido, correo, cedula
+                from cliente
+                where nombre like '%".$filtro."%'
+                    or apellido like '%".$filtro."%'
+                order by apellido";
     }
 }
 

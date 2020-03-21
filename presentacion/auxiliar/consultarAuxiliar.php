@@ -31,21 +31,23 @@ include 'presentacion/administrador/menuAdministrador.php';
 						</thead>
 						<tbody id="resultadosAuxiliares">
 						<?php
-                foreach ($auxiliares as $c) {
-                    echo "<tr>";
-                    echo "<td>" . $c->getId() . "</td>";
-                    echo "<td>" . $c->getNombre() . "</td>";
-                    echo "<td>" . $c->getApellido() . "</td>";
-                    echo "<td>" . $c->getCorreo() . "</td>";
-                    echo "<td>" . "<span class='fas " . ($c->getDsiponible()==0?"fa-check-circle":"fa-times-circle") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($c->getDsiponible()==0?"Disponible":"No Disponible") . "' ></span>"."</td>";
-                    echo "<td>" . "<a href='modalAuxiliar.php?idAuxiliar=" . $c->getId() . "' data-toggle='modal' data-target='#modalAuxiliar' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                                   <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php") . "&idAuxiliar=" . $c->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                   <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/auxiliar/pdfAuxiliar.php") ."&idAuxiliar=".$c->getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
-                           </td>";
-                    echo "</tr>";
-                
-                }
-                echo "<tr><td colspan='6'>" . count($auxiliares) . " registros encontrados</td></tr>"?>
+                        foreach ($auxiliares as $a) {
+                            echo "<tr>";
+                            echo "<td>" . $a -> getId() . "</td>";
+                            echo "<td>" . $a -> getNombre() . "</td>";
+                            echo "<td>" . $a -> getApellido() . "</td>";
+                            echo "<td>" . $a -> getCorreo() . "</td>";
+                            echo "<td>" . "<span class='fas " . ($a -> getDisponibilidad() == 1?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($a -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
+                            echo "<td>" . "
+                                           <a href='indexAjax.php?pid=". base64_encode("presentacion/auxiliar/modalAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
+                                                <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
+                                           <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
+                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/auxiliar/pdfAuxiliar.php") ."&idAuxiliar=".$a -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
+                                   </td>";
+                            echo "</tr>";
+                        
+                        }
+                        echo "<tr><td colspan='6'>" . count($auxiliares) . " registros encontrados</td></tr>"?>
 						</tbody>
 					</table>
 			
@@ -54,8 +56,6 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
-</div>
-
 
 <div class="modal fade" id="modalAuxiliar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" >
@@ -63,6 +63,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 		</div>
 	</div>
 </div>
+
 <script>
 	$('body').on('show.bs.modal', '.modal', function (e) {
 		var link = $(e.relatedTarget);

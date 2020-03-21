@@ -4,30 +4,32 @@ require_once 'persistencia/Conexion.php';
 
 class Veterinario extends Persona{
     private $especialidad;
-    private $disponible;
+    private $disponibilidad;
     private $veterinarioDAO;
     private $conexion;
     
     function getEspecialidad(){
         return $this -> especialidad;
     }
-    function getDsiponible(){
-        return $this -> disponible;
+    
+    function getDsiponibilidad(){
+        return $this -> disponibilidad;
     }
-    function Veterinario($id="", $nombre="", $apellido="", $correo="", $clave="", $especialidad="", $disponible=""){
+    
+    function Veterinario($id="", $nombre="", $apellido="", $correo="", $clave="", $especialidad="", $disponibilidad=""){
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
         $this -> especialidad = $especialidad;
-        $this -> disponible = $disponible;
+        $this -> disponibilidad = $disponibilidad;
         $this -> conexion = new Conexion();
-        $this -> veterinarioDAO = new VeterinarioDAO($id, $nombre, $apellido, $correo, $clave, $especialidad);
+        $this -> veterinarioDAO = new VeterinarioDAO($id, $nombre, $apellido, $correo, $clave, $especialidad, $disponibilidad);
     }
-    
-    
+        
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> actualizar());
         $this -> conexion -> cerrar();
     }
+    
     function registrar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> registrar());
@@ -56,7 +58,7 @@ class Veterinario extends Persona{
         $this -> apellido = $resultado[1];
         $this -> correo = $resultado[2];
         $this -> especialidad = $resultado[3];
-        $this -> disponible = $resultado[4];
+        $this -> disponibilidad = $resultado[4];
         $this -> conexion -> cerrar();
     }
     

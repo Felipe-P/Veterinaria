@@ -7,16 +7,16 @@ class VeterinarioDAO{
     private $correo;
     private $clave;
     private $especialidad;
-    private $disponible;
+    private $disponibilidad;
     
-    function VeterinarioDAO($id="", $nombre="", $apellido="", $correo="", $clave="", $especialidad="", $disponible=""){
+    function VeterinarioDAO($id="", $nombre="", $apellido="", $correo="", $clave="", $especialidad="", $disponibilidad=""){
         $this -> id = $id;
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
         $this -> correo = $correo;
         $this -> clave = $clave;
         $this -> especialidad = $especialidad;
-        $this -> disponible = $disponible;
+        $this -> disponibilidad = $disponibilidad;
     }
     
     function actualizar(){
@@ -26,8 +26,7 @@ class VeterinarioDAO{
                 especialidad =" . $this -> especialidad . "
                 where idveterinario=" . $this -> id;
     }
-    
-    
+        
     function registrar(){
         return "INSERT INTO veterinario (nombre, apellido, correo, clave, especialidad)
                 VALUES ('" . $this -> nombre . "', '" . $this -> apellido . "', '" . $this -> correo . "', md5('" . $this -> clave . "'), '" . $this -> especialidad . "')";
@@ -46,7 +45,7 @@ class VeterinarioDAO{
     }
     
     function consultar(){
-        return "SELECT v.nombre, apellido, correo, e.nombre, disponible
+        return "SELECT v.nombre, apellido, correo, e.nombre, disponibilidad
                 FROM veterinario v, especialidad e
                 WHERE idveterinario =" . $this -> id ." and especialidad=idespecialidad";
     }
@@ -58,9 +57,9 @@ class VeterinarioDAO{
     }
     
     function consultarTodos(){
-        return "SELECT DISTINCT idveterinario, v.nombre, apellido, correo, e.nombre, disponible
+        return "SELECT DISTINCT idveterinario, v.nombre, apellido, correo, e.nombre, disponibilidad
                 FROM veterinario v, especialidad e
-                WHERE especialidad=idespecialidad";
+                WHERE especialidad = idespecialidad";
     }
 }
 

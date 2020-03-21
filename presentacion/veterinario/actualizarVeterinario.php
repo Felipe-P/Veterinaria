@@ -12,6 +12,7 @@ if (isset($_POST["actualizar"])) {
     $veterinario->actualizar();
     $veterinario->consultar();
 }
+
 $especialidad = new Especialidad();
 $especialidades = $especialidad ->consultarTodos();
 
@@ -51,12 +52,8 @@ include 'presentacion/administrador/menuAdministrador.php';
 									foreach ($especialidades as $e){
 									    if($e->getNombre()!=$veterinario->getEspecialidad()){
 									        echo "<option>".$e->getNombre()." </option>";
-									    }
-									   
-									   
-									}
-									
-									
+									    }									 								   
+									}									
 									?>
 									<option> </option>
 								</select>
@@ -67,7 +64,5 @@ include 'presentacion/administrador/menuAdministrador.php';
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 </div>
