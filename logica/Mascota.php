@@ -67,12 +67,23 @@ class Mascota {
         }else{
             $this -> conexion -> cerrar();
             return true;
-        }
-        
+        }        
     }
+    
     function consultar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> mascotaDAO -> consultar());
+        $resultado = $this -> conexion -> extraer();
+        $this -> nombre = $resultado[0];
+        $this -> sexo = $resultado[1];
+        $this -> peso = $resultado[2];
+        $this -> f_nacimiento = $resultado[3];
+        $this -> conexion -> cerrar();
+    }
+    
+    function consultarDetalle(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mascotaDAO -> consultarDetalle());
         $resultado = $this -> conexion -> extraer();
         $this -> nombre = $resultado[0];
         $this -> sexo = $resultado[1];
@@ -82,6 +93,11 @@ class Mascota {
         $this -> conexion -> cerrar();
     }
     
+    function actualizar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizar());
+        $this -> conexion -> cerrar();
+    }
     
     function consultarTodos(){
         $this -> conexion -> abrir();

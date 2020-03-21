@@ -2,12 +2,12 @@
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
 $auxiliar = new Auxiliar($_GET["idAuxiliar"]);
-$auxiliar->consultar();
+$auxiliar -> consultar();
 if (isset($_POST["actualizar"])) {
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellido"];
     $auxiliar = new Auxiliar($_GET["idAuxiliar"], $nombre, $apellido);
-    $auxiliar->actualizar();
+    $auxiliar -> actualizar();
 }
 include 'presentacion/administrador/menuAdministrador.php';
 ?>
@@ -18,11 +18,10 @@ include 'presentacion/administrador/menuAdministrador.php';
 			<div class="card">
 				<div class="card-header bg-primary text-white">Actualizar Auxiliar</div>
 				<div class="card-body">
-						<?php
-    if (isset($_POST["actualizar"])) {
-        ?>
-						<div class="alert alert-success" role="alert">Auxiliar actualizado
-						exitosamente.</div>						
+					<?php
+                    if (isset($_POST["actualizar"])) {
+                    ?>
+						<div class="alert alert-success" role="alert">Auxiliar actualizado exitosamente.</div>						
 						<?php } ?>
 						<form
 						action=<?php echo "index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php")."&idAuxiliar=".$_GET["idAuxiliar"] ?>
@@ -37,13 +36,10 @@ include 'presentacion/administrador/menuAdministrador.php';
 								placeholder="apellido" required="required"
 								value="<?php echo $auxiliar->getApellido(); ?>">
 						</div>
-
 						<button type="submit" name="actualizar" class="btn btn-primary">Actualizar</button>
 					</form>
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 </div>

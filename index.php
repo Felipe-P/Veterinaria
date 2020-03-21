@@ -7,7 +7,7 @@ require 'logica/Auxiliar.php';
 require 'logica/Cliente.php';
 require 'logica/Especialidad.php';
 require 'logica/Mascota.php';
-require 'logica/tipoMascota.php';
+require 'logica/Tipo_Mascota.php';
 ?>
 
 <head>

@@ -32,8 +32,7 @@
 	<div class="row">
 	<div class="col-2">
 	<div class="card">
-	<div class="card-body">
-		
+	<div class="card-body">		
 			<aside class="menu">
 				<p class="menu-label">Registrar</p>
 				<ul class="menu-list">

@@ -8,8 +8,8 @@ $sexo = "";
 $peso = "";
 $f_nacimiento = "";
 
-$tipo = new tipoMascota();
-$tipos = $tipo ->consultarTodos();
+$tipo = new Tipo_Mascota();
+$tipos = $tipo -> consultarTodos();
 if(isset($_POST["registrar"])){
     $nombre = $_POST["nombre"];
     $sexo = $_POST["sexo"];
@@ -19,7 +19,7 @@ if(isset($_POST["registrar"])){
     
     
     if($tipo!="Seleccionar tipo de mascota"){
-        $tipo= new tipoMascota("",$_POST["tipo"]);
+        $tipo= new Tipo_Mascota("",$_POST["tipo"]);
         $tipo ->consultar();
         $mascota = new Mascota("", $nombre, $sexo, $peso, $f_nacimiento, $_SESSION["id"], $tipo->getId());
         if(!$mascota->existe()){
@@ -46,20 +46,19 @@ if(isset($_POST["registrar"])){
 				<div class="card-header bg-primary text-white">Registrar mascota</div>
 				<div class="card-body">
 					<?php 
-					if($error == 0){
-					?>
-					<div class="alert alert-success" role="alert">
-						mascota registrada exitosamente.
-					</div>
-					<?php } else if($error == 1) { ?>
-					<div class="alert alert-danger" role="alert">
-						La mascota ya existe
-					</div>
-					<?php }else if($error == 2) {  ?>
-					<div class="alert alert-danger" role="alert">
-						Seleccione el tipo de mascota
-					</div>
-					<?php } ?>
+					if ($error == 0) {
+                    ?>
+                        <div class="alert alert-success" role="alert">Mascota registrada exitosamente.</div>
+               		<?php
+                    } else if ($error == 1) {
+                    ?>
+        				<div class="alert alert-danger" role="alert">Mascota ya registrada</div>
+    				<?php 
+                    }else if($error == 2) {  
+                    ?>
+        				<div class="alert alert-danger" role="alert">Seleccione el tipo de mascota</div>
+    				<?php 
+                    } ?>
 					<form action=<?php echo "index.php?pid=" . base64_encode("presentacion/mascota/registrarMascota.php") ?> method="post">
 						<div class="form-group">
 							<input type="text" name="nombre" class="form-control" placeholder="Nombre" required="required" value="<?php echo $nombre; ?>">
@@ -79,13 +78,9 @@ if(isset($_POST["registrar"])){
 									<option>Seleccionar tipo de mascota</option>
 									<?php 
 									foreach ($tipos as $t){
-									   echo "<option>".$t->getNombre()." </option>";
-									   
+									   echo "<option>".$t -> getNombre()." </option>";									   
 									}
-									
-									
 									?>
-									
 								</select>
 							</div>
 						</div>

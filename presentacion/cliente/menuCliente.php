@@ -35,18 +35,13 @@
 	<div class="card-body">
 		
 			<aside class="menu">
-				<p class="menu-label">Ver</p>
+				<p class="menu-label">Registrar</p>
 				<ul class="menu-list">
-					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>>Mascotas</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/registrarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>>Registrar</a></li>
 				</ul>
 				<p class="menu-label">Consultar</p>
 				<ul class="menu-list">
-				</ul>
-				<p class="menu-label">Analisis</p>
-				<ul class="menu-list">
-					<li><a>Payments</a></li>
-					<li><a>Transfers</a></li>
-					<li><a>Balance</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>>Consultar</a></li>
 				</ul>
 			</aside>
 		</div>
