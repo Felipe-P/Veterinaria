@@ -4,7 +4,8 @@
 <!--     </nav> -->
 <!-- </div> -->
 
-<section class="hero is-dark is-bold ">
+		<div class="col-12">
+		<section class="hero is-dark is-bold ">
   <div class="hero-body">
     <div class="container ">
       <h1 class="title text-center">
@@ -13,3 +14,6 @@
     </div>
   </div>
 </section>
+		
+		</div>
+

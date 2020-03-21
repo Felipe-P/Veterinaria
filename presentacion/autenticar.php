@@ -13,13 +13,13 @@ if ($administrador -> autenticar()) {
 }else{
     if($veterinario -> autenticar()){
         $_SESSION['id'] = $veterinario -> getId();
-        header("Location: index.php?pid=" . base64_encode("presentacion/sesionVeterinario.php"));
+        header("Location: index.php?pid=" . base64_encode("presentacion/veterinario/sesionVeterinario.php"));
     } else if($auxiliar -> autenticar()){
             $_SESSION['id'] = $auxiliar -> getId();
-            header("Location: index.php?pid=" . base64_encode("presentacion/sesionAuxiliar.php"));
+            header("Location: index.php?pid=" . base64_encode("presentacion/auxiliar/sesionAuxiliar.php"));
         } else if($cliente -> autenticar()){
                 $_SESSION['id'] = $cliente -> getId();
-                header("Location: index.php?pid=" . base64_encode("presentacion/sesionCliente.php"));
+                header("Location: index.php?pid=" . base64_encode("presentacion/cliente/sesionCliente.php"));
             } else {
                     header("Location: index.php?pid=" . base64_encode("presentacion/inicio.php") . "&error=true &nos=true");
                 }

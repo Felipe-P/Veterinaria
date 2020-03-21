@@ -1,6 +1,6 @@
 <nav class="navbar is-white">
   <div class="navbar-brand">
-    <a class="navbar-item" href="index.php?pid=<?php echo base64_encode(administrador/sesionAdministrador.php)?>">
+    <a class="navbar-item" href="index.php?pid=<?php echo base64_encode("presentacion/administrador/sesionAdministrador.php")?>">
       <img src="img/Logo.png" alt="Logotipo perron" width="65px" height="35px">
       <span class="navbar-text">Veterinaria Felipe y Stiven S.A</span>
     </a>
@@ -28,34 +28,25 @@
         </div>
       </div>
     </div>
-  </div>
 </nav>
-<!-- <div class="Container"> -->
 	<div class="row">
-	<div class="col-3">
+	<div class="col-2">
 	<div class="card">
 	<div class="card-body">
 		
 			<aside class="menu">
-				<p class="menu-label">General</p>
+				<p class="menu-label">Registrar</p>
 				<ul class="menu-list">
-					<li><a>Dashboard</a></li>
-					<li><a>Customers</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/veterinario/registrarVeterinario.php")?>>Veterinario</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/auxiliar/registrarAuxiliar.php")?>>Auxiliar</a></li>
 				</ul>
-				<p class="menu-label">Administration</p>
+				<p class="menu-label">Consultar</p>
 				<ul class="menu-list">
-					<li><a>Team Settings</a></li>
-					<li><a class="is-active">Manage Your Team</a>
-						<ul>
-							<li><a>Members</a></li>
-							<li><a>Plugins</a></li>
-							<li><a>Add a member</a></li>
-						</ul></li>
-					<li><a>Invitations</a></li>
-					<li><a>Cloud Storage Environment Settings</a></li>
-					<li><a>Authentication</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/cliente/consultarCliente.php")?>>Cliente</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/auxiliar/consultarAuxiliar.php")?>>Auxiliar</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/veterinario/consultarVeterinario.php")?>>Veterinario</a></li>
 				</ul>
-				<p class="menu-label">Transactions</p>
+				<p class="menu-label">Analisis</p>
 				<ul class="menu-list">
 					<li><a>Payments</a></li>
 					<li><a>Transfers</a></li>

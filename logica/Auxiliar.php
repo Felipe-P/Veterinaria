@@ -4,13 +4,32 @@ require_once 'persistencia/Conexion.php';
 
 class Auxiliar extends Persona{
     
+    private $disponible;
     private $auxiliarDAO;
     private $conexion;
     
-    function Auxiliar($id="", $nombre="", $apellido="", $correo="", $clave=""){
+    
+    function getDsiponible(){
+        return $this -> disponible;
+    }
+    function Auxiliar($id="", $nombre="", $apellido="", $correo="", $clave="",$disponible=""){
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
+        $this -> disponible = $disponible;
         $this -> conexion = new Conexion();
-        $this -> auxiliarDAO = new AuxiliarDAO($id, $nombre, $apellido, $correo, $clave);
+        $this -> auxiliarDAO = new AuxiliarDAO($id, $nombre, $apellido, $correo, $clave, $disponible );
+    }
+    
+    function filtro($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> filtrar($filtro));
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
     }
     
     function registrar(){
@@ -18,7 +37,11 @@ class Auxiliar extends Persona{
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> registrar());
         $this -> conexion -> cerrar();
     }
-    
+    function actualizar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizar());
+        $this -> conexion -> cerrar();
+    }
     function autenticar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> autenticar());
@@ -40,6 +63,7 @@ class Auxiliar extends Persona{
         $this -> nombre = $resultado[0];
         $this -> apellido = $resultado[1];
         $this -> correo = $resultado[2];
+        $this -> disponible = $resultado[3];
         $this -> conexion -> cerrar();
     }
     
@@ -61,7 +85,7 @@ class Auxiliar extends Persona{
         $resultados = array();
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
-            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "");
+            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
             $i++;
         }
         $this -> conexion -> cerrar();

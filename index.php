@@ -5,6 +5,9 @@ require 'logica/Administrador.php';
 require 'logica/Veterinario.php';
 require 'logica/Auxiliar.php';
 require 'logica/Cliente.php';
+require 'logica/Especialidad.php';
+require 'logica/Mascota.php';
+require 'logica/tipoMascota.php';
 ?>
 
 <head>
@@ -20,6 +23,7 @@ require 'logica/Cliente.php';
         })
     </script>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Veterinaria</title>
 
 </head>
 

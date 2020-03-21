@@ -10,11 +10,14 @@ class Mascota {
     private $f_nacimiento;
     private $cliente;
     private $tipo;
-    private $MascotaDAO;
+    private $mascotaDAO;
     private $conexion;
     
     function getId(){
         return $this -> id;
+    }
+    function getNombre(){
+        return $this -> nombre;
     }
     
     function getSexo(){
@@ -28,11 +31,7 @@ class Mascota {
     function getF_nacimiento(){
         return $this -> f_nacimiento;
     }
-    
-    function getCodigo(){
-        return $this -> codigo;
-    }
-    
+
     function getCliente(){
         return $this -> cliente;
     }
@@ -41,17 +40,16 @@ class Mascota {
         return $this -> tipo;
     }
     
-    function Cliente($id="", $nombre="", $sexo="", $peso="", $f_nacimiento="", $codigo="", $cliente="", $tipo=""){
+    function Mascota($id="", $nombre="", $sexo="", $peso="", $f_nacimiento="",  $cliente="", $tipo=""){
         $this -> id = $id;
         $this -> nombre = $nombre;
         $this -> sexo = $sexo;
         $this -> peso = $peso;
         $this -> f_nacimiento = $f_nacimiento;
-        $this -> codigo = $codigo;
         $this -> cliente = $cliente;
         $this -> tipo = $tipo;
         $this -> conexion = new Conexion();
-        $this -> mascotaDAO = new MascotaDAO($id, $nombre, $sexo, $peso, $f_nacimiento, $codigo, $cliente, $tipo);
+        $this -> mascotaDAO = new MascotaDAO($id, $nombre, $sexo, $peso, $f_nacimiento, $cliente, $tipo);
     }
     
     function registrar(){
@@ -60,6 +58,18 @@ class Mascota {
         $this -> conexion -> cerrar();
     }
     
+    function existe(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mascotaDAO -> existe());
+        if($this -> conexion ->numFilas()==0){
+            $this -> conexion -> cerrar();
+            return false;
+        }else{
+            $this -> conexion -> cerrar();
+            return true;
+        }
+        
+    }
     function consultar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> mascotaDAO -> consultar());
@@ -68,21 +78,10 @@ class Mascota {
         $this -> sexo = $resultado[1];
         $this -> peso = $resultado[2];
         $this -> f_nacimiento = $resultado[3];
-        $this -> codigo = $resultado[4];
+        $this -> tipo = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
-    function existeCodigo(){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> mascotaDAO -> existeCodigo());
-        if($this -> conexion -> numFilas() == 0){
-            $this -> conexion -> cerrar();
-            return false;
-        } else {
-            $this -> conexion -> cerrar();
-            return true;
-        }
-    }
     
     function consultarTodos(){
         $this -> conexion -> abrir();
@@ -90,7 +89,7 @@ class Mascota {
         $resultados = array();
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
-            $resultados[$i] = new Mascota($registro[0],$registro[1],$registro[2],$registro[3], $registro[4], $registro[5]);
+            $resultados[$i] = new Mascota($registro[0],$registro[1],$registro[2],$registro[3], $registro[4],"",$registro[5]);
             $i++;
         }
         $this -> conexion -> cerrar();

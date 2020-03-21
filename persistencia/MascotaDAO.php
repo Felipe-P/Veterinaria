@@ -10,37 +10,37 @@ class MascotaDAO{
     private $cliente;
     private $tipo;
     
-    function MascotaDAO($id="", $nombre="", $sexo="", $peso="", $f_nacimiento="", $codigo="", $cliente="", $tipo=""){
+    function MascotaDAO($id="", $nombre="", $sexo="", $peso="", $f_nacimiento="", $cliente="", $tipo=""){
         $this -> id = $id;
         $this -> nombre = $nombre;
         $this -> sexo = $sexo;
         $this -> peso = $peso;
-        $this -> f_nacimiento = $f_nacimiento;
-        $this -> codigo = $codigo;        
+        $this -> f_nacimiento = $f_nacimiento;      
         $this -> cliente = $cliente;
         $this -> tipo = $tipo;
     }
     
     function registrar(){
-        return "INSERT INTO mascota (nombre, sexo, peso, f_nacimiento, codgio, cliente, tipo)
-                VALUES ('" . $this -> nombre . "', '" . $this -> sexo . "', '" . $this -> peso . "', '" . $this -> f_nacimiento . "', '" . $this -> codigo . "',  '" . $this -> cliente . "', '" . $this -> tipo . "')";
+        return "INSERT INTO mascota (nombre, sexo, peso, fechaNacimiento, cliente_idcliente, tipo_mascota)
+                VALUES ('" . $this -> nombre . "', '" . $this -> sexo . "', '" . $this -> peso . "', '" . $this -> f_nacimiento . "', '" . $this -> cliente . "', '" . $this -> tipo . "')";
     }
     
     function consultar(){
-        return "SELECT nombre, sexo, peso, f_nacimiento, codigo
+        return "SELECT nombre, sexo, peso, f_nacimiento, 
                 FROM mascota
-                WHERE id_mascota =" . $this -> id;
+                WHERE idmascota =" . $this -> id;
     }
     
-    function existeCodigo(){
-        return "SELECT id_mascota
+    function existe(){
+        return "SELECT idmascota
                 FROM mascota
-                WHERE codigo =". $this -> codigo; 
+                WHERE nombre='" . $this -> nombre."'";
     }
-        
+ 
     function consultarTodos(){
-        return "SELECT id_mascota, nombre, sexo, peso, codigo
-                FROM mascota";
+        return "SELECT idmascota, m.nombre, sexo,  peso, fechaNacimiento, t.nombre
+                FROM mascota m, tipo_mascota t
+                WHERE cliente_idcliente=". $this -> cliente. " and idtipo_mascota=tipo_mascota";
     }
 }
 

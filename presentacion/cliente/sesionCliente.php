@@ -18,5 +18,5 @@ include 'presentacion/cliente/menuCliente.php';
         </div>
     </div>
 </div>
-
+</div>
 

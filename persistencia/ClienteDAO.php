@@ -23,25 +23,39 @@ class ClienteDAO{
     }
     
     function autenticar(){
-        return "SELECT id_cliente 
+        return "SELECT idcliente 
                 FROM cliente
                 WHERE correo = '" . $this -> correo . "' and clave = md5('" . $this -> clave . "')";
     }
+    function actualizar(){
+        return "update cliente set
+                nombre = '" . $this -> nombre . "',
+                apellido='" . $this -> apellido . "',
+                cedula ='" . $this -> cedula . "',
+                where idcliente=" . $this -> id;
+    }
     
+    function filtrar($filtro){
+        return "select idcliente,nombre, apellido, correo, cedula
+                from cliente
+                where nombre like '%".$filtro."%'
+                    or apellido like '%".$filtro."%'
+                order by apellido";
+    }
     function consultar(){
         return "SELECT nombre, apellido, correo, cedula
                 FROM cliente
-                WHERE id_cliente =" . $this -> id;
+                WHERE idcliente =" . $this -> id;
     }
     
     function existeCorreo(){
-        return "SELECT id_cliente 
+        return "SELECT idcliente 
                 FROM cliente
                 WHERE correo = '" . $this -> correo . "'";
     }
     
     function consultarTodos(){
-        return "SELECT id_cliente, nombre, apellido, correo, cedula
+        return "SELECT idcliente, nombre, apellido, correo, cedula
                 FROM cliente";
     }
 }

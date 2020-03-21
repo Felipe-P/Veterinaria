@@ -48,7 +48,23 @@ class Cliente extends Persona{
         $this -> cedula = $resultado[3];
         $this -> conexion -> cerrar();
     }
-    
+    function actualizar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> actualizar());
+        $this -> conexion -> cerrar();
+    }
+    function filtro($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> filtrar($filtro));
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Cliente($registro[0],$registro[1],$registro[2],$registro[3], "", $registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
     function existeCorreo(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> existeCorreo());

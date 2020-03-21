@@ -1,7 +1,8 @@
 <div class="container">
 <div class="row">
-		<div class="col-12"><?php include 'encabezado.php';?></div>
-		</div>
+<?php include 'encabezado.php';?>
+</div>
+
 	<div class="row">
     	<div class="col-sm text-white">.</div>
     </div>
@@ -22,7 +23,7 @@
 								<img src="img/inicio1.jpg" class="d-block w-100" alt="" height="450">
 							</div>
 							<div class="carousel-item">
-								<img src="img/inicio2.jpg" class="d-block w-100" alt="" height="450">
+								<img src="img/inicio2.jpg" class="d-block w-100" alt="" height="100">
 							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -57,6 +58,8 @@
 						</div>
 						<button type="submit" class="btn btn-dark">Ingresar</button>
 					</form>
+					
+					<a href=<?php echo "index.php?pid=" . base64_encode("presentacion/registro.php") . "&nos=true" ?>>Registrese Gratis</a>	
 				</div>
 			</div>
 			<div class="text-center mt-4" >
