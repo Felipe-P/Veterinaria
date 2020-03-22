@@ -12,11 +12,10 @@
   </div>
     <div class="navbar-end">
       <div class="navbar-item">
-        <div class="field is-grouped">
-          
+        <div class="field is-grouped">          
           <p class="control">
             <span class="navbar-text">
-      Administrador: <?php echo $administrador -> getNombre() . " " . $administrador -> getApellido() ?>  </span>
+      			Administrador: <?php echo $administrador -> getNombre() . " " . $administrador -> getApellido() ?>  </span>
           </p>
           <p class="control">
             <a class="bd-tw-button button" href="index.php" >
@@ -26,10 +25,10 @@
             </a>
           </p>
         </div>
-      </div>
+      </div>      
     </div>
 </nav>
-	<div class="row">
+<div class="row">
 	<div class="col-2">
 	<div class="card">
 	<div class="card-body">		
@@ -45,13 +44,8 @@
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/auxiliar/consultarAuxiliar.php")?>>Auxiliar</a></li>
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/veterinario/consultarVeterinario.php")?>>Veterinario</a></li>
 				</ul>
-				<p class="menu-label">Analisis</p>
-				<ul class="menu-list">
-					<li><a>Payments</a></li>
-					<li><a>Transfers</a></li>
-					<li><a>Balance</a></li>
-				</ul>
 			</aside>
 		</div>
 		</div>
 	</div>
+	

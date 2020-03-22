@@ -73,8 +73,7 @@ include 'presentacion/administrador/menuAdministrador.php';
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#filtrar").keyup(function(){
-		
+	$("#filtrar").keyup(function(){		
 	var filtroDato=$("#filtrar").val();
 		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/auxiliar/buscarAuxiliarAjax.php") ."&filtro=\"+filtroDato;\n"; ?>
 		$("#resultadosAuxiliares").load(ruta);

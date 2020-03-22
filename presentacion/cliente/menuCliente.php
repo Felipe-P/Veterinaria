@@ -13,10 +13,9 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-          
           <p class="control">
             <span class="navbar-text">
-      Usuario: <?php echo $cliente -> getNombre() . " " . $cliente -> getApellido() ?>  </span>
+      			Usuario: <?php echo $cliente -> getNombre() . " " . $cliente -> getApellido() ?>  </span>
           </p>
           <p class="control">
             <a class="bd-tw-button button" href="index.php" >
