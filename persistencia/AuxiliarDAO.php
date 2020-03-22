@@ -53,11 +53,11 @@ class AuxiliarDAO{
     }
     
     function filtrar($filtro){
-        return "select idauxiliar ,nombre, apellido, correo, disponibilidad
-                from auxiliar
-                where nombre like '%".$filtro."%'
-                    or apellido like '%".$filtro."%'
-                order by apellido";
+        return "SELECT idauxiliar ,nombre, apellido, correo, disponibilidad
+                FROM auxiliar
+                WHERE nombre LIKE '%".$filtro."%'
+                    OR apellido LIKE '%".$filtro."%' OR CONCAT(nombre, ' ', apellido) LIKE '%".$filtro."%'
+                ORDER by apellido";
     }
 }
 

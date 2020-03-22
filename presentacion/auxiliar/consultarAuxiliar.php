@@ -1,82 +1,56 @@
 <?php
-$administrador = new Administrador($_SESSION['id']);
-$administrador->consultar();
-$auxiliar = new Auxiliar();
-$auxiliares = $auxiliar->consultarTodos();
+$administrador = new Administrador ( $_SESSION ['id'] );
+$administrador->consultar ();
 include 'presentacion/administrador/menuAdministrador.php';
 ?>
-<div class="container">
+
+<div class="container" style="margin-top: 20px;">
 	<div class="row">
-	<div class="col-3"></div>
-			<div class="col-6">
-			<div class="form-group">
-				<input  id="filtrar" type="search"  class="form-control ds-input" placeholder="Search" >
-			</div>
-		</div>
-		<div class="col-11">
-			<div class="card">
-				<div class="card-header bg-primary text-white">Consultar Auxiliares</div>
-				<div class="card-body">
-			
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Apellido</th>
-								<th scope="col">Correo</th>
-								<th scope="col">Disponibilidad</th>
-								<th scope="col">Servicios</th>
-							</tr>
-						</thead>
-						<tbody id="resultadosAuxiliares">
-						<?php
-                        foreach ($auxiliares as $a) {
-                            echo "<tr>";
-                            echo "<td>" . $a -> getId() . "</td>";
-                            echo "<td>" . $a -> getNombre() . "</td>";
-                            echo "<td>" . $a -> getApellido() . "</td>";
-                            echo "<td>" . $a -> getCorreo() . "</td>";
-                            echo "<td>" . "<span class='fas " . ($a -> getDisponibilidad() == 1?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($a -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
-                            echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("presentacion/auxiliar/modalAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
-                                                <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                                           <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/auxiliar/pdfAuxiliar.php") ."&idAuxiliar=".$a -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
-                                   </td>";
-                            echo "</tr>";
-                        
-                        }
-                        echo "<tr><td colspan='6'>" . count($auxiliares) . " registros encontrados</td></tr>"?>
-						</tbody>
-					</table>
-			
-				</div>
-			</div>
+	<div class="col-2"></div>
+		<div class="col-8">
+			<!-- Search form -->
+			<form class="form-inline active-pink-3 active-pink-4">
+				<i class="fas fa-search" aria-hidden="true"></i> <input
+					class="form-control form-control-sm ml-3 w-75" type="text"
+					id="formConsulta"
+					placeholder="Buscar auxiliar por nombre o apellido"
+					aria-label="Search">
+			</form>
 		</div>
 	</div>
+	<div class="col-12" id="tabla"></div>
 </div>
 
-<div class="modal fade" id="modalAuxiliar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" >
-		<div class="modal-content" id="modalContent">
-		</div>
+<div class="modal fade" id="modalAuxiliar" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" id="modalContent"></div>
 	</div>
 </div>
 
 <script>
+$(document).ready(function(){	
 	$('body').on('show.bs.modal', '.modal', function (e) {
 		var link = $(e.relatedTarget);
 		$(this).find(".modal-content").load(link.attr("href"));
 	});
-</script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#filtrar").keyup(function(){		
-	var filtroDato=$("#filtrar").val();
-		<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/auxiliar/buscarAuxiliarAjax.php") ."&filtro=\"+filtroDato;\n"; ?>
-		$("#resultadosAuxiliares").load(ruta);
-	});
+	$("#formConsulta").keyup(function() {
+		console.log( $("#formConsulta").val());
+		if($("#formConsulta").val() != ""){
+			$("#tabla").show();
+			<?php echo "var ruta = \"indexAjax.php?pid=" . base64_encode("presentacion/auxiliar/buscarAuxiliarAjax.php")."\";";?>
+			
+			$("#tabla").load(ruta, {"filtro": $("#formConsulta").val()})
+		}
+		else
+			$("#tabla").hide();		
+			});	
+	//Al presionar enter se cierra la sesion, esto evita que eso pase
+	$(document).keypress(
+			function(event){
+			    if (event.which == '13') {
+			      event.preventDefault();
+			    }
+			});	
 });
 </script>

@@ -19,19 +19,6 @@ class Auxiliar extends Persona{
         $this -> auxiliarDAO = new AuxiliarDAO($id, $nombre, $apellido, $correo, $clave, $disponibilidad );
     }
     
-    function filtro($filtro){
-        $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> auxiliarDAO -> filtrar($filtro));
-        $resultados = array();
-        $i = 0;
-        while (($registro = $this -> conexion -> extraer()) != null) {
-            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
-            $i++;
-        }
-        $this -> conexion -> cerrar();
-        return $resultados;
-    }
-    
     function registrar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> registrar());
@@ -84,6 +71,19 @@ class Auxiliar extends Persona{
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> consultarTodos());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
+    function filtrar($filtro){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> filtrar($filtro));
         $resultados = array();
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
