@@ -78,6 +78,7 @@ class Mascota {
         $this -> sexo = $resultado[1];
         $this -> peso = $resultado[2];
         $this -> f_nacimiento = $resultado[3];
+        $this -> tipo = $resultado[4];
         $this -> conexion -> cerrar();
     }
     
@@ -95,7 +96,7 @@ class Mascota {
     
     function actualizar(){
         $this -> conexion -> abrir();
-        $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizar());
+        $this -> conexion -> ejecutar($this -> mascotaDAO -> actualizar());
         $this -> conexion -> cerrar();
     }
     

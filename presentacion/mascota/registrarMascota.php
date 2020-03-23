@@ -18,7 +18,7 @@ if(isset($_POST["registrar"])){
     $tipo = $_POST["tipo"];
     
     
-    if($tipo!="Seleccionar tipo de mascota"){
+    if($tipo!="Seleccionar tipo de mascota" && $sexo!="Seleccionar Sexo de mascota"){
         $tipo= new Tipo_Mascota("",$_POST["tipo"]);
         $tipo ->consultar();
         $mascota = new Mascota("", $nombre, $sexo, $peso, $f_nacimiento, $_SESSION["id"], $tipo->getId());
@@ -56,7 +56,7 @@ if(isset($_POST["registrar"])){
     				<?php 
                     }else if($error == 2) {  
                     ?>
-        				<div class="alert alert-danger" role="alert">Seleccione el tipo de mascota</div>
+        				<div class="alert alert-danger" role="alert">Seleccione los campos</div>
     				<?php 
                     } ?>
 					<form action=<?php echo "index.php?pid=" . base64_encode("presentacion/mascota/registrarMascota.php") ?> method="post">
@@ -64,7 +64,13 @@ if(isset($_POST["registrar"])){
 							<input type="text" name="nombre" class="form-control" placeholder="Nombre" required="required" value="<?php echo $nombre; ?>">
 						</div>
 						<div class="form-group">
-							<input type="text" name="sexo" class="form-control" placeholder="Sexo" required="required" value="<?php echo $sexo; ?>">
+							<div class="select is-rounded">
+								<select name="sexo" required="required">
+									<option>Seleccionar Sexo de mascota</option>
+									<option>Macho</option>
+									<option>Hembra</option>
+								</select>
+							</div>
 						</div>
 						<div class="form-group">
 							<input type="number" min="1" name="peso" class="form-control" placeholder="Peso en kg" required="required" value="<?php echo $peso; ?>">

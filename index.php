@@ -8,6 +8,10 @@ require 'logica/Cliente.php';
 require 'logica/Especialidad.php';
 require 'logica/Mascota.php';
 require 'logica/Tipo_Mascota.php';
+require 'logica/Tipo_Solicitud.php';
+require 'logica/Limpieza.php';
+require 'logica/Solicitud_Limpieza.php';
+require 'logica/Solicitud.php';
 ?>
 
 <head>

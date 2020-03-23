@@ -20,18 +20,18 @@ class MascotaDAO{
     }
     
     function registrar(){
-        return "INSERT INTO mascota (nombre, sexo, peso, f_nacimiento, cliente_idcliente, tipo_mascota)
+        return "INSERT INTO mascota (nombre, sexo, peso, fechaNacimiento, cliente_idcliente, tipo_mascota)
                 VALUES ('" . $this -> nombre . "', '" . $this -> sexo . "', '" . $this -> peso . "', '" . $this -> f_nacimiento . "', '" . $this -> cliente . "', '" . $this -> tipo . "')";
     }
     
     function consultar(){
-        return "SELECT nombre, sexo, peso, f_nacimiento
-                FROM mascota 
-                WHERE idmascota =" . $this -> id;
+        return "SELECT m.nombre, sexo, peso, fechaNacimiento, t.nombre
+                FROM mascota m, tipo_mascota t
+                WHERE idmascota =" . $this -> id ." and tipo_mascota=idtipo_mascota";
     }
     
     function consultarDetalle(){
-        return "SELECT m.nombre, m.sexo, m.peso, m.f_nacimiento, tm.nombre
+        return "SELECT m.nombre, m.sexo, m.peso, m.fechaNnacimiento, tm.nombre
                 FROM mascota as m
                 INNER JOIN tipo_mascota tm
                 ON m.tipo_mascota = tm.idtipo_mascota
@@ -43,7 +43,8 @@ class MascotaDAO{
                 nombre = '" . $this -> nombre . "',
                 sexo ='" . $this -> sexo . "',
                 peso ='" . $this -> peso . "',
-                f_nacimiento ='". $this -> f_nacimiento."',
+                fechaNacimiento ='". $this -> f_nacimiento."',
+                tipo_mascota=". $this -> tipo."
                 WHERE idmascota=" . $this -> id;
     }
     
@@ -54,7 +55,7 @@ class MascotaDAO{
     }
  
     function consultarTodos(){
-        return "SELECT idmascota, m.nombre, sexo,  peso, f_nacimiento, t.nombre
+        return "SELECT idmascota, m.nombre, sexo,  peso, fechaNacimiento, t.nombre
                 FROM mascota m, tipo_mascota t
                 WHERE cliente_idcliente=". $this -> cliente. " and idtipo_mascota=tipo_mascota";
     }

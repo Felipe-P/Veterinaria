@@ -25,10 +25,15 @@ class AuxiliarDAO{
     function actualizar(){
         return "update auxiliar set
                 nombre = '" . $this -> nombre . "',
-                apellido='" . $this -> apellido . "',
+                apellido='" . $this -> apellido . "'
                 where idauxiliar=" . $this -> id;
     }
     
+    function actualizarDisponbilidad($estado){
+        return "update auxiliar set
+                Disponibilidad = " . $estado . "
+                where idauxiliar=" . $this -> id;
+    }
     function autenticar(){
         return "SELECT idauxiliar
                 FROM auxiliar
@@ -50,6 +55,11 @@ class AuxiliarDAO{
     function consultarTodos(){
         return "SELECT idauxiliar, nombre, apellido, correo, disponibilidad
                 FROM auxiliar";
+    }
+    function consultarDisponibles(){
+        return "SELECT idauxiliar, nombre, apellido, correo, disponibilidad
+                FROM auxiliar
+                WHERE disponibilidad=0";
     }
     
     function filtrar($filtro){

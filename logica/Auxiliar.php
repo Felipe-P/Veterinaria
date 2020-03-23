@@ -11,6 +11,9 @@ class Auxiliar extends Persona{
     function getDisponibilidad(){
         return $this -> disponibilidad;
     }
+    function setDisponibilidad($disponibilidad){
+        $this -> disponibilidad= $disponibilidad;
+    }
     
     function Auxiliar($id="", $nombre="", $apellido="", $correo="", $clave="", $disponibilidad=""){
         $this -> Persona($id, $nombre, $apellido, $correo, $clave);
@@ -41,6 +44,11 @@ class Auxiliar extends Persona{
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizar());
+        $this -> conexion -> cerrar();
+    }
+    function actualizarDisponibilidad($estado){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> actualizarDisponbilidad($estado));
         $this -> conexion -> cerrar();
     }
     
@@ -81,6 +89,19 @@ class Auxiliar extends Persona{
         }
     }
     
+    
+    function consultarDisponibles(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> consultarDisponibles());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> auxiliarDAO -> consultarTodos());

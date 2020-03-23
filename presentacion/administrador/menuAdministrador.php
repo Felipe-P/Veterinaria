@@ -43,6 +43,7 @@
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/cliente/consultarCliente.php")?>>Cliente</a></li>
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/auxiliar/consultarAuxiliar.php")?>>Auxiliar</a></li>
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/veterinario/consultarVeterinario.php")?>>Veterinario</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarSolicitudes.php")?>>Solicitudes Pendientes</a></li>
 				</ul>
 			</aside>
 		</div>

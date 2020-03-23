@@ -8,9 +8,15 @@ if (isset($_POST["actualizar"])) {
     $sexo = $_POST["sexo"];
     $peso = $_POST["peso"];
     $f_nacimiento = $_POST["f_nacimiento"];
-    $mascota = new Mascota($_GET["idMascota"], $nombre, $sexo, $peso, $f_nacimiento, "", "");
+    $tip = new Tipo_Mascota("",$_POST["tipo"]);
+    $tip->consultar();
+    
+    $mascota = new Mascota($_GET["idMascota"], $nombre, $sexo, $peso, $f_nacimiento, "", $tip->getId());
     $mascota -> actualizar();
+    $mascota -> consultar();
 }
+$tipo = new Tipo_Mascota();
+$tipos = $tipo->consultarTodos();
 include 'presentacion/cliente/menuCliente.php';
 ?>
 <div class="container">
@@ -22,6 +28,7 @@ include 'presentacion/cliente/menuCliente.php';
 				<div class="card-body">
 					<?php
                     if (isset($_POST["actualizar"])) {
+                        
                         ?>
                 		<div class="alert alert-success" role="alert">Mascota actualizada exitosamente.</div>						
                 		<?php } ?>
@@ -30,14 +37,37 @@ include 'presentacion/cliente/menuCliente.php';
                     			<input type="text" name="nombre" class="form-control" placeholder="Nombre" required="required" value="<?php echo $mascota -> getNombre(); ?>">
                     		</div>
                     		<div class="form-group">
-                    			<input type="text" name="sexo" class="form-control"placeholder="Sexo" required="required" value="<?php echo $mascota -> getSexo(); ?>">
-                    		</div>
+							<div class="select is-rounded">
+								<select name="sexo" required="required">
+									<option><?php echo $mascota->getSexo()?></option>
+								
+									<option><?php echo ($mascota->getSexo()=="Hembra"?"Macho":"Hembra");?> </option>
+								</select>
+							</div>
+						</div>
+                    		
                     		<div class="form-group">
                     			<input type="text" name="peso" class="form-control" placeholder="Peso" required="required" value="<?php echo $mascota -> getPeso(); ?>">
                     		</div>
                     		<div class="form-group">
                     			<input type="text" name="f_nacimiento" class="form-control" placeholder="Fecha de Nacimiento" required="required" value="<?php echo $mascota -> getF_nacimiento(); ?>">
                     		</div>
+                    		<div class="form-group">
+							<div class="select is-rounded">
+								<select name="tipo" required="required">
+									<option><?php echo $mascota->getTipo()?></option>
+									<?php 
+									foreach ($tipos as $t){
+									    if($t->getNombre()!=$mascota->getTipo()){
+									        echo "<option>".$t->getNombre()." </option>";
+									    }									 								   
+									}									
+									?>
+								
+								</select>
+							</div>
+						</div>
+                    		
                     		<button type="submit" name="actualizar" class="btn btn-primary">Actualizar</button>
                 		</form>
 				</div>

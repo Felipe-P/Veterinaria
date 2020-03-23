@@ -34,7 +34,6 @@ class Tipo_Mascota {
         $this -> conexion -> ejecutar($this -> tipo_MascotaDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
         $this -> id = $resultado[0];
-        $this -> nombre = $resultado[1];
         $this -> conexion -> cerrar();
     }
     

@@ -2,20 +2,14 @@
 $administrador = new Administrador($_SESSION['id']);
 $administrador->consultar();
 $auxiliar = new Auxiliar();
-$auxiliares = $auxiliar->consultarTodos();
+$auxiliares = $auxiliar->consultarDisponibles();
 include 'presentacion/administrador/menuAdministrador.php';
 ?>
 <div class="container">
 	<div class="row">
-	<div class="col-3"></div>
-			<div class="col-6">
-			<div class="form-group">
-				<input  id="filtrar" type="search"  class="form-control ds-input" placeholder="Search" >
-			</div>
-		</div>
 		<div class="col-11">
 			<div class="card">
-				<div class="card-header bg-primary text-white">Consultar Auxiliares</div>
+				<div class="card-header bg-primary text-white">Asignar Auxiliar</div>
 				<div class="card-body">
 			
 					<table class="table table-striped table-hover">
@@ -37,17 +31,14 @@ include 'presentacion/administrador/menuAdministrador.php';
                             echo "<td>" . $a -> getNombre() . "</td>";
                             echo "<td>" . $a -> getApellido() . "</td>";
                             echo "<td>" . $a -> getCorreo() . "</td>";
-                            echo "<td>" . "<span class='fas " . ($a -> getDisponibilidad() == 0?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($a -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
-                            echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
-                                                <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
-                                           <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/auxiliar/pdfAuxiliar.php") ."&idAuxiliar=".$a -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
+                            echo "<td>" . "<span class='fas " . ($a -> getDisponibilidad() == 1?"fa-times-circle text-danger":"fa-check-circle text-success") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($a -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
+                            echo "<td>" . "<a class='far fa-address-book' href='index.php?pid=" . base64_encode("presentacion/mascota/consultarSolicitudes.php"). "&correcto=true&idAuxiliar=" . $a -> getId() . "&idSolicitud=".$_GET["idSolicitud"]."' data-toggle='tooltip' data-placement='left' title='Agendar'> </a>
+                                       
                                    </td>";
                             echo "</tr>";
                         
                         }
-                        echo "<tr><td colspan='6'>" . count($auxiliares) . " registros encontrados</td></tr>"?>
+                        echo "<tr><td colspan='7'>" . count($auxiliares) . " registros encontrados</td></tr>"?>
 						</tbody>
 					</table>
 			

@@ -6,14 +6,12 @@ $idVeterinario= $_GET['idVeterinario'];
 $veterinario = new Veterinario($idVeterinario);
 $veterinario -> consultar(); 
 ?>
-<div class="modal-header">
-	<h5 class="modal-title">Detalle veterinario</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
-</div>
-<div class="modal-body">
-	<table class="table table-striped table-hover">
+<header class="modal-card-head">
+      <p class="modal-card-title">Detalles Veterinario</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <table class="table table-striped table-hover">
 		<tbody>
 			<tr>
                 <th width="20%">Nombre</th>
@@ -33,8 +31,9 @@ $veterinario -> consultar();
             </tr>
             <tr>
                 <th width="20%">Disponibilidad</th>
-                <td><?php echo (($veterinario -> getDsiponibilidad() == 1)?"<i class='fas fa-check-circle text-success'></i>":"<i class='fas fa-times-circle text-danger'></i>"); ?></td>
+                <td><?php echo (($veterinario -> getDsiponibilidad() == 0)?"<i class='fas fa-check-circle text-success'></i>":"<i class='fas fa-times-circle text-danger'></i>"); ?></td>
             </tr>
 		</tbody>
 	</table>
-</div>
+    </section>
+ 
