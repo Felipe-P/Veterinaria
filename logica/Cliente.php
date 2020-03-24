@@ -4,11 +4,19 @@ require_once 'persistencia/Conexion.php';
 
 class Cliente extends Persona{
     private $cedula;
+    private $notificacion;
     private $clienteDAO;
     private $conexion;
     
     function getCedula(){
         return $this -> cedula;
+    }
+    
+    function setNotificacion($notificacion){
+        $this -> notificacion = $notificacion;
+    }
+    function getNotificacion(){
+        return $this->notificacion;
     }
     
     function Cliente($id="", $nombre="", $apellido="", $correo="", $clave="", $cedula=""){

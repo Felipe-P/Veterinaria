@@ -81,7 +81,19 @@ class Mascota {
         $this -> tipo = $resultado[4];
         $this -> conexion -> cerrar();
     }
-    
+    function consultarTodo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mascotaDAO -> consultarTodo());
+        $resultado = $this -> conexion -> extraer();
+        $this -> nombre = $resultado[0];
+        $this -> sexo = $resultado[1];
+        $this -> peso = $resultado[2];
+        $this -> f_nacimiento = $resultado[3];
+        $this -> tipo = $resultado[4];
+        $this -> cliente = $resultado[5];
+        $this -> cliente = $this -> cliente ." ". $resultado[6];
+        $this -> conexion -> cerrar();
+    }
     function consultarDetalle(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> mascotaDAO -> consultarDetalle());

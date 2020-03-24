@@ -36,11 +36,15 @@
 			<aside class="menu">
 				<p class="menu-label">Registrar</p>
 				<ul class="menu-list">
-					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/registrarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>>Registrar</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/registrarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Mascota</a></li>
 				</ul>
 				<p class="menu-label">Consultar</p>
 				<ul class="menu-list">
-					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>>Consultar</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Mascota</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Proceso Solicitudes</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Facturas</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Historial Solicitudes</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarMascota.php"). "&who=c&idCliente=".$_SESSION['id']?>> Historial Facturas</a></li>
 				</ul>
 			</aside>
 		</div>

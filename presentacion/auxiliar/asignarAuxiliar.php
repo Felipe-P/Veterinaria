@@ -32,7 +32,7 @@ include 'presentacion/administrador/menuAdministrador.php';
                             echo "<td>" . $a -> getApellido() . "</td>";
                             echo "<td>" . $a -> getCorreo() . "</td>";
                             echo "<td>" . "<span class='fas " . ($a -> getDisponibilidad() == 1?"fa-times-circle text-danger":"fa-check-circle text-success") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($a -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
-                            echo "<td>" . "<a class='far fa-address-book' href='index.php?pid=" . base64_encode("presentacion/mascota/consultarSolicitudes.php"). "&correcto=true&idAuxiliar=" . $a -> getId() . "&idSolicitud=".$_GET["idSolicitud"]."' data-toggle='tooltip' data-placement='left' title='Agendar'> </a>
+                            echo "<td>" . "<a class='far fa-address-book' href='index.php?pid=" . base64_encode("presentacion/mascota/consultarSolicitudes.php"). "&correcto=auxiliar&idAuxiliar=" . $a -> getId() . "&idSolicitud=".$_GET["idSolicitud"]."' data-toggle='tooltip' data-placement='left' title='Agendar'> </a>
                                        
                                    </td>";
                             echo "</tr>";

@@ -60,5 +60,17 @@ class Solicitud_Limpieza {
         $this -> conexion -> cerrar();
         return $resultados;
     }
+    function consultarSolicitudes(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> Solicitud_LimpiezaDAO -> consultarSolicitudes());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud_Limpieza($registro[0],$registro[1]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
 }
 ?>

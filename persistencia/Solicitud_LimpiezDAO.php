@@ -29,7 +29,13 @@ class Solicitud_LimpiezaDAO{
     
     function consultarTodos(){
         return "SELECT solicitud_idsolicitud, limpieza_idlimpieza, auxiliar_idauxiliar
-                FROM especialidad";
+                FROM solicitud_limpieza";
+    }
+    
+    function consultarSolicitudes(){
+        return "SELECT solicitud_idsolicitud, limpieza_idlimpieza, estado_solicitud
+                FROM solicitud_limpieza, solicitud
+                WHERE auxiliar_idauxiliar =". $this -> idAuxiliar. " and estado_proceso=0 and solicitud_idsolicitud=idsolicitud and factura_idfactura is NULL";
     }
 }
 

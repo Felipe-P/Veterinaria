@@ -6,22 +6,35 @@ $solicitud = new Solicitud();
 include 'presentacion/administrador/menuAdministrador.php';
 $error="";
 if( isset($_GET["correcto"])){
-    $soli = new Solicitud($_GET["idSolicitud"]);
-    $soli-> consultarIdMascota();
-    $soli = new Solicitud("","","","","","", $soli -> getMascota(), $soli->getFecha());
-    $solis = $soli -> consultarDuplicados();
-    foreach ($solis as $s){
-        
-        $s ->actualizarEstadoS(1);
-        $limpieza= new Solicitud_Limpieza($s -> getId(), "", $_GET["idAuxiliar"]);
-        $limpieza -> ModificarAuxiliar();
+    if($_GET["correcto"]=="auxiliar"){
+        $soli = new Solicitud($_GET["idSolicitud"]);
+        $soli-> consultarIdMascota();
+        $soli = new Solicitud("","","","","","", $soli -> getMascota(), $soli->getFecha());
+        $solis = $soli -> consultarDuplicados();
+        foreach ($solis as $s){
+            
+            $s ->actualizarEstadoS(1);
+            $limpieza= new Solicitud_Limpieza($s -> getId(), "", $_GET["idAuxiliar"]);
+            $limpieza -> ModificarAuxiliar();
+            $aux = new Auxiliar( $_GET["idAuxiliar"]);
+            $aux -> actualizarDisponibilidad(1);
+            
+        }
         $aux = new Auxiliar( $_GET["idAuxiliar"]);
-        $aux -> actualizarDisponibilidad(1);
-        
+        $aux -> consultar();
+        $error="El Auxiliar ". $aux -> getNombre(). " Fue Asignado Con Exito";
+    }else{
+        if($_GET["correcto"]=="veterinario"){
+            $soli = new Solicitud($_GET["idSolicitud"],"","",$_GET["idVeterinario"]);
+            $soli -> actualizarEstadoS(1);
+            $soli -> actualizarVeterinario();
+            $veterinario =new Veterinario($_GET["idVeterinario"],"","","","","",1);
+            $veterinario -> actualizarDisponibilidad();
+            $veterinario -> consultar();
+            $error="El Veterinario ". $veterinario -> getNombre(). " Fue Asignado Con Exito";
+        }
     }
-    $aux = new Auxiliar( $_GET["idAuxiliar"]);
-    $aux -> consultar();
-    $error="El Auxiliar ". $aux -> getNombre(). " Fue Asignado Con Exito";
+    
 }
 $s=  array();
 $s =$solicitud->consultarTodos();

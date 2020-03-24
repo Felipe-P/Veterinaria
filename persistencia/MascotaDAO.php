@@ -29,6 +29,12 @@ class MascotaDAO{
                 FROM mascota m, tipo_mascota t
                 WHERE idmascota =" . $this -> id ." and tipo_mascota=idtipo_mascota";
     }
+    function consultarTodo(){
+        return "SELECT m.nombre, sexo, peso, fechaNacimiento, t.nombre, c.nombre, c.apellido
+                FROM mascota m, tipo_mascota t, cliente c
+                WHERE idmascota =" . $this -> id ." and tipo_mascota=idtipo_mascota and idcliente=cliente_idcliente";
+    }
+    
     
     function consultarDetalle(){
         return "SELECT m.nombre, m.sexo, m.peso, m.fechaNnacimiento, tm.nombre

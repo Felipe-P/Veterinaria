@@ -57,23 +57,6 @@ if($_GET["Dato"]=="Limpieza"){
                 Su Mascota Esta En Proceso De Solicitud
                 </div>";
             }
+}
     ?>
 
-
-
-
-<?php 
-}else if($_GET["Dato"]=="Tratamiento"){
-    $solicitud = new Solicitud("","","","","","",$_GET["idMascota"]);
-    if(! $solicitud -> verificar()){
-        echo "<a class='button is-link' href='index.php?pid=".base64_encode("presentacion/mascota/generarSolicitud.php")."&idMascota=".$_GET["idMascota"]."&idsolicitud=".$_GET["Dato"]."'>Solicitar</a>";
-    }else{
-        echo "<div class='alert alert-danger' role='alert'>
-                Su Mascota Esta En Proceso De Solicitud
-                </div>";
-    }
-
-
-}
-    
-?>

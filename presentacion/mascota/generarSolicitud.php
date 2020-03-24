@@ -61,9 +61,9 @@ if(isset($_GET["idsolicitud"])){
 									<option>-----------</option>
 									<?php 
 									foreach ($tiposS as $t){
-									  
+									    if($t ->getNombre()!="Tratamiento"){
 									        echo "<option>".$t->getNombre()." </option>";
-									    								 								   
+									    }
 									}									
 									?>
 								

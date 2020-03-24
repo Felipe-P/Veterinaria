@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-03-2020 a las 08:43:48
+-- Tiempo de generación: 24-03-2020 a las 08:09:32
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -63,7 +63,7 @@ CREATE TABLE `auxiliar` (
 --
 
 INSERT INTO `auxiliar` (`idauxiliar`, `nombre`, `apellido`, `correo`, `clave`, `disponibilidad`) VALUES
-(1, 'Homero', 'Simpson', '15@15.com', '9bf31c7ff062936a96d3c8bd1f8f2ff3', 1),
+(1, 'Homero', 'Simpson', '15@15.com', '9bf31c7ff062936a96d3c8bd1f8f2ff3', 0),
 (2, 'zoro', 'master', '25@25.com', '8e296a067a37563370ded05f5a3bf3ec', 0);
 
 -- --------------------------------------------------------
@@ -121,8 +121,20 @@ INSERT INTO `especialidad` (`idespecialidad`, `nombre`) VALUES
 
 CREATE TABLE `factura` (
   `idfactura` int(11) NOT NULL,
-  `precio` double NOT NULL
+  `precio` double NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `hora` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`idfactura`, `precio`, `fecha`, `hora`) VALUES
+(2, 20, '2020-03-24', '12:19:06'),
+(3, 15, '2020-03-24', '12:23:01'),
+(4, 10, '2020-03-24', '01:27:04'),
+(5, 20, '2020-03-24', '06:40:21');
 
 -- --------------------------------------------------------
 
@@ -179,12 +191,18 @@ INSERT INTO `mascota` (`idmascota`, `nombre`, `sexo`, `fechaNacimiento`, `peso`,
 CREATE TABLE `reporte_clinico` (
   `idreporte_clinico` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `motivo` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `diagnostico` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `tratamiento` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `observaciones` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `mascota_idmascota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `reporte_clinico`
+--
+
+INSERT INTO `reporte_clinico` (`idreporte_clinico`, `fecha`, `diagnostico`, `tratamiento`, `observaciones`, `mascota_idmascota`) VALUES
+(8, '2020-03-24', 'tiene muchas cosas', 'Necesita tratamiento con un Neurología', 'sin observaciones', 5);
 
 -- --------------------------------------------------------
 
@@ -201,18 +219,20 @@ CREATE TABLE `solicitud` (
   `factura_idfactura` int(11) DEFAULT NULL,
   `mascota_idmascota` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` time NOT NULL
+  `hora` time NOT NULL,
+  `especialidad_aux` varchar(20) COLLATE utf8mb4_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`idsolicitud`, `estado_proceso`, `estado_solicitud`, `veterinario_idveterinario`, `tipo_solicitud_idtipo_solicitud`, `factura_idfactura`, `mascota_idmascota`, `fecha`, `hora`) VALUES
-(9, 0, 1, NULL, 1, NULL, 4, '2020-03-23', '03:34:31'),
-(10, 0, 0, NULL, 2, NULL, 5, '2020-03-23', '04:45:56'),
-(11, 0, 1, NULL, 1, NULL, 4, '2020-03-23', '06:09:28'),
-(12, 0, 1, NULL, 1, NULL, 4, '2020-03-23', '07:38:25');
+INSERT INTO `solicitud` (`idsolicitud`, `estado_proceso`, `estado_solicitud`, `veterinario_idveterinario`, `tipo_solicitud_idtipo_solicitud`, `factura_idfactura`, `mascota_idmascota`, `fecha`, `hora`, `especialidad_aux`) VALUES
+(9, 1, 1, NULL, 1, 2, 4, '2020-03-23', '03:34:31', NULL),
+(10, 1, 1, 1, 2, 5, 5, '2020-03-23', '04:45:56', NULL),
+(11, 1, 1, NULL, 1, 3, 4, '2020-03-23', '06:09:28', NULL),
+(12, 1, 1, NULL, 1, 4, 4, '2020-03-23', '07:38:25', NULL),
+(17, 0, 0, NULL, 3, NULL, 5, '2020-03-24', '06:18:37', 'Neurología');
 
 -- --------------------------------------------------------
 
@@ -426,7 +446,7 @@ ALTER TABLE `especialidad`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idfactura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idfactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `limpieza`
@@ -444,13 +464,13 @@ ALTER TABLE `mascota`
 -- AUTO_INCREMENT de la tabla `reporte_clinico`
 --
 ALTER TABLE `reporte_clinico`
-  MODIFY `idreporte_clinico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idreporte_clinico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_mascota`

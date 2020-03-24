@@ -12,7 +12,7 @@ class Veterinario extends Persona{
         return $this -> especialidad;
     }
     
-    function getDsiponibilidad(){
+    function getDisponibilidad(){
         return $this -> disponibilidad;
     }
     
@@ -29,7 +29,11 @@ class Veterinario extends Persona{
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> actualizar());
         $this -> conexion -> cerrar();
     }
-    
+    function actualizarDisponibilidad(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> veterinarioDAO -> actualizarDisponibilidad());
+        $this -> conexion -> cerrar();
+    }
     function registrar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> registrar());
@@ -90,6 +94,18 @@ class Veterinario extends Persona{
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> consultarTodos());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Veterinario($registro[0],$registro[1],$registro[2],$registro[3], "", $registro[4], $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarDisponiblesTipo($Tipo){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> veterinarioDAO -> consultarDisponiblesTipo($Tipo));
         $resultados = array();
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {

@@ -12,6 +12,7 @@ class Solicitud {
     private $mascota;
     private $fecha;
     private $hora;
+    private $aux;
     private $SolicitudDAO;
     private $conexion;
     
@@ -178,8 +179,11 @@ class Solicitud {
     function getId(){
         return $this -> id;
     }
+    function getAux(){
+        return $this -> aux;
+    }
     
-    function Solicitud($id="", $estadoProceso="", $estadoSolicitud="", $veterinario="", $tipoSolicitud="", $factura="", $mascota="", $fecha="", $hora=""){
+    function Solicitud($id="", $estadoProceso="", $estadoSolicitud="", $veterinario="", $tipoSolicitud="", $factura="", $mascota="", $fecha="", $hora="", $aux=""){
         $this -> id = $id;
         $this -> estadoProceso = $estadoProceso;
         $this -> estadoSolicitud = $estadoSolicitud;
@@ -189,8 +193,17 @@ class Solicitud {
         $this -> mascota = $mascota;
         $this -> fecha = $fecha;
         $this -> hora = $hora;
+        $this -> aux = $aux;
         $this -> conexion = new Conexion();
-        $this -> SolicitudDAO = new SolicitudDAO($id, $estadoProceso, $estadoSolicitud, $veterinario, $tipoSolicitud, $factura, $mascota, $fecha, $hora);
+        $this -> SolicitudDAO = new SolicitudDAO($id, $estadoProceso, $estadoSolicitud, $veterinario, $tipoSolicitud, $factura, $mascota, $fecha, $hora, $aux);
+    }
+    
+    function consultarAux(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarAux());
+        $resultado = $this -> conexion -> extraer();
+        $this -> aux = $resultado[0];
+        $this -> conexion -> cerrar();
     }
     function verificar(){
         $this -> conexion -> abrir();
@@ -231,11 +244,31 @@ class Solicitud {
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> registrar());
         $this -> conexion -> cerrar();
     }
+    function registraraux(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> registraraux());
+        $this -> conexion -> cerrar();
+    }
     function consultarID(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarID());
         $resultado = $this -> conexion -> extraer();
         $this -> id = $resultado[0];
+        $this -> conexion -> cerrar();
+    }
+    function consultarParaFactura(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarParaFactura());
+        $resultado = $this -> conexion -> extraer();
+        $this -> tipoSolicitud = $resultado[0];
+        $this -> mascota = $resultado[1];
+        $this -> conexion -> cerrar();
+    }
+    function consultarParaFacturaV(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarParaFacturaV());
+        $resultado = $this -> conexion -> extraer();
+        $this -> mascota = $resultado[0];
         $this -> conexion -> cerrar();
     }
     function consultar(){
@@ -246,15 +279,29 @@ class Solicitud {
         $this -> estadoSolicitud = $resultado[1];
         $this -> veterinario = $resultado[2];
         $this -> tipoSolicitud = $resultado[3];
-        $this -> factura = $resultado[4];
-        $this -> mascota = $resultado[5];
-        $this -> fecha = $resultado[6];
-        $this -> hora = $resultado[7];
+        $this -> mascota = $resultado[4];
+        $this -> fecha = $resultado[5];
+        $this -> hora = $resultado[6];
         $this -> conexion -> cerrar();
     }
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> actualizar());
+        $this -> conexion -> cerrar();
+    }
+    function actualizarFactura(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> actualizarFactura());
+        $this -> conexion -> cerrar();
+    }
+    function actualizarEstadoP(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> actualizarEstadoP());
+        $this -> conexion -> cerrar();
+    }
+    function actualizarVeterinario(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> actualizarVeterinario());
         $this -> conexion -> cerrar();
     }
     function actualizarEstadoS($estado){
@@ -293,6 +340,67 @@ class Solicitud {
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
             $resultados[$i] = new Solicitud($registro[0],"",$registro[1], "", $registro[2], "", $registro[3], $registro[4], $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarSolicitudes(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarSolicitudes());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], "","", $registro[2], $registro[3], $registro[4], $registro[5],$registro[6]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarHistorialAuxiliar($auxiliar){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarHistorialAuxiliar($auxiliar));
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], "", "", $registro[2], $registro[3], $registro[4], $registro[5], $registro[6]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarEsperaLimpieza($idAuxiliar){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarEsperaLimpieza($idAuxiliar));
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], "", "", $registro[2], "", $registro[3], $registro[4], $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarHistorialVeterinario(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarHistorialVeterianrio());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], "","", $registro[2], $registro[3], $registro[4], $registro[5],$registro[6]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    
+    function filtroHistorialAuxiliar($filtro,$auxiliar){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> filtroHistorialAuxiliar($filtro,$auxiliar));
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], "", "", $registro[2], $registro[3], $registro[4], $registro[5], $registro[6]);
             $i++;
         }
         $this -> conexion -> cerrar();

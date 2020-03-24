@@ -12,6 +12,8 @@ require 'logica/Tipo_Solicitud.php';
 require 'logica/Limpieza.php';
 require 'logica/Solicitud_Limpieza.php';
 require 'logica/Solicitud.php';
+require 'Logica/Factura.php';
+require 'Logica/reporteClinico.php';
 ?>
 
 <head>
