@@ -47,6 +47,13 @@ class Solicitud_Limpieza {
         $this -> idAuxiliar = $resultado[1];
         $this -> conexion -> cerrar();
     }
+    function consultartipo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> Solicitud_LimpiezaDAO -> consultartipo());
+        $resultado = $this -> conexion -> extraer();
+        $this -> conexion -> cerrar();
+        return $resultado[0];
+    }
     
     function consultarTodos(){
         $this -> conexion -> abrir();

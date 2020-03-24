@@ -222,6 +222,30 @@ class Solicitud {
             return false;
         }
     }
+    function verificarFactura(){
+        $this -> conexion -> abrir();
+        $cont=0;
+        $registros= array();
+        $i=0;
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> verificarFactura());
+        while (($registro = $this -> conexion -> extraer()) != null) {
+           $registros [$i] =$registro[0];
+        }
+        $this -> conexion -> cerrar();
+        return $registros;
+    }
+    function EstadoFactura($factura){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> verificarFactura($factura));
+        $registro = $this -> conexion -> extraer();
+        if($registro[0]==0){
+            $this -> conexion -> cerrar();
+            return false;
+        }else{
+            $this -> conexion -> cerrar();
+            return true;
+        }
+    }
     function verificarParaLimpieza(){
         $this -> conexion -> abrir();
         $cont=0;
@@ -269,6 +293,14 @@ class Solicitud {
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarParaFacturaV());
         $resultado = $this -> conexion -> extraer();
         $this -> mascota = $resultado[0];
+        $this -> conexion -> cerrar();
+    }
+    function consultarParaFacturaC(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarParaFacturaC());
+        $resultado = $this -> conexion -> extraer();
+        $this -> tipoSolicitud = $resultado[0];
+        $this -> mascota = $resultado[1];
         $this -> conexion -> cerrar();
     }
     function consultar(){
@@ -352,6 +384,42 @@ class Solicitud {
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
             $resultados[$i] = new Solicitud($registro[0],$registro[1], "","", $registro[2], $registro[3], $registro[4], $registro[5],$registro[6]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarSolicitudesPendientesMascota(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarSolicitudesPendientesMascota());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], $registro[2], "", $registro[3], $registro[4],"","", $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarSolicitudesPendientesMascota1(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarSolicitudesPendientesMascota1());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], $registro[2], "", $registro[3], $registro[4],"","", $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarSolicitudesPendientesMascota2(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarSolicitudesPendientesMascota2());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new Solicitud($registro[0],$registro[1], $registro[2], "", $registro[3], $registro[4],"","", $registro[5]);
             $i++;
         }
         $this -> conexion -> cerrar();

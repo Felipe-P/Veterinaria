@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2020 a las 08:09:32
+-- Tiempo de generación: 24-03-2020 a las 22:13:49
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -123,18 +123,19 @@ CREATE TABLE `factura` (
   `idfactura` int(11) NOT NULL,
   `precio` double NOT NULL,
   `fecha` date DEFAULT NULL,
-  `hora` time DEFAULT NULL
+  `hora` time DEFAULT NULL,
+  `estado_pagada` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `factura`
 --
 
-INSERT INTO `factura` (`idfactura`, `precio`, `fecha`, `hora`) VALUES
-(2, 20, '2020-03-24', '12:19:06'),
-(3, 15, '2020-03-24', '12:23:01'),
-(4, 10, '2020-03-24', '01:27:04'),
-(5, 20, '2020-03-24', '06:40:21');
+INSERT INTO `factura` (`idfactura`, `precio`, `fecha`, `hora`, `estado_pagada`) VALUES
+(2, 20, '2020-03-24', '12:19:06', 1),
+(3, 15, '2020-03-24', '12:23:01', 0),
+(4, 10, '2020-03-24', '01:27:04', 0),
+(5, 20, '2020-03-24', '06:40:21', 1);
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,7 @@ INSERT INTO `solicitud` (`idsolicitud`, `estado_proceso`, `estado_solicitud`, `v
 (10, 1, 1, 1, 2, 5, 5, '2020-03-23', '04:45:56', NULL),
 (11, 1, 1, NULL, 1, 3, 4, '2020-03-23', '06:09:28', NULL),
 (12, 1, 1, NULL, 1, 4, 4, '2020-03-23', '07:38:25', NULL),
-(17, 0, 0, NULL, 3, NULL, 5, '2020-03-24', '06:18:37', 'Neurología');
+(17, 0, 1, 3, 3, NULL, 5, '2020-03-24', '06:18:37', 'Neurología');
 
 -- --------------------------------------------------------
 
@@ -319,7 +320,8 @@ CREATE TABLE `veterinario` (
 
 INSERT INTO `veterinario` (`idveterinario`, `nombre`, `apellido`, `correo`, `clave`, `especialidad`, `disponibilidad`) VALUES
 (1, 'Felipe', 'Poveda', '10@10.com', 'd3d9446802a44259755d38e6d163e820', 8, 0),
-(2, 'Stiven', 'Garcia', '20@20.com', '98f13708210194c475687be6106a3b84', 3, 0);
+(2, 'Stiven', 'Garcia', '20@20.com', '98f13708210194c475687be6106a3b84', 3, 0),
+(3, 'El Mocho', 'Ramirez', '30@30.com', '34173cb38f07f89ddbebc2ac9128303f', 5, 1);
 
 --
 -- Índices para tablas volcadas
@@ -488,7 +490,7 @@ ALTER TABLE `tipo_solicitud`
 -- AUTO_INCREMENT de la tabla `veterinario`
 --
 ALTER TABLE `veterinario`
-  MODIFY `idveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

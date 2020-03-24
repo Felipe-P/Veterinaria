@@ -25,7 +25,11 @@ class Solicitud_LimpiezaDAO{
                 FROM solicitud_limpieza
                 WHERE solicitud_idsolicitud='" . $this -> idSolicitud."'";
     }
-    
+    function consultartipo(){
+        return "SELECT tipo
+                FROM solicitud_limpieza, limpieza
+                WHERE solicitud_idsolicitud=" . $this -> idSolicitud." and limpieza_idlimpieza=idlimpieza";
+    }
     
     function consultarTodos(){
         return "SELECT solicitud_idsolicitud, limpieza_idlimpieza, auxiliar_idauxiliar

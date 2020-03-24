@@ -43,6 +43,17 @@ class SolicitudDAO{
                 FROM solicitud
                 WHERE mascota_idmascota=". $this ->mascota;
     }
+    function verificarFactura(){
+        return "SELECT factura_idfactura
+                FROM solicitud
+                WHERE mascota_idmascota=". $this ->mascota;
+    }
+    
+    function EstadoFactura($factura){
+        return "SELECT estado_pagada
+                FROM factura
+                WHERE idfactura=". $factura;
+    }
     function verificarParaLimpieza(){
         return "SELECT estado_proceso, tipo_solicitud_idtipo_solicitud
                 FROM solicitud
@@ -83,6 +94,11 @@ class SolicitudDAO{
                 FROM solicitud, mascota m
                 WHERE idsolicitud =" . $this -> id. " and idmascota=mascota_idmascota ";
     }
+    function consultarParaFacturaC(){
+        return "SELECT  t.nombre, m.nombre
+                FROM solicitud, mascota m, tipo_solicitud t
+                WHERE idsolicitud =" . $this -> id. " and idmascota=mascota_idmascota and idtipo_solicitud=tipo_solicitud_idtipo_solicitud ";
+    }
     function consultarID(){
         return "SELECT idsolicitud
                 FROM solicitud
@@ -99,7 +115,21 @@ class SolicitudDAO{
                 FROM cliente
                 WHERE correo = '" . $this -> correo . "'";
     }
-    
+    function consultarSolicitudesPendientesMascota(){
+        return "SELECT   idsolicitud, estado_proceso, estado_solicitud, t.nombre, factura_idfactura, s.hora
+                FROM solicitud s, tipo_solicitud t
+                WHERE  idtipo_solicitud=tipo_solicitud_idtipo_solicitud and factura_idfactura is null and mascota_idmascota=".$this -> mascota;
+    }
+    function consultarSolicitudesPendientesMascota1(){
+        return "SELECT   idsolicitud, estado_proceso, estado_solicitud, t.nombre, factura_idfactura, s.hora
+                FROM solicitud s, tipo_solicitud t, factura
+                WHERE  idtipo_solicitud=tipo_solicitud_idtipo_solicitud and factura_idfactura=idfactura and estado_pagada=0 and mascota_idmascota=".$this -> mascota;
+    }
+    function consultarSolicitudesPendientesMascota2(){
+        return "SELECT   idsolicitud, estado_proceso, estado_solicitud, t.nombre, factura_idfactura, s.hora
+                FROM solicitud s, tipo_solicitud t, factura
+                WHERE  idtipo_solicitud=tipo_solicitud_idtipo_solicitud and factura_idfactura=idfactura and mascota_idmascota=".$this -> mascota;
+    }
     function consultarTodos(){
         return "SELECT   idsolicitud, estado_solicitud, t.nombre, m.nombre, fecha, hora
                 FROM solicitud, tipo_solicitud t, mascota m

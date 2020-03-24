@@ -7,9 +7,13 @@ class Factura {
     private $precio;
     private $fecha;
     private $hora;
+    private $estado_pagada;
     private $FacturaDAO;
     private $conexion;
     
+    function getEstado_pagada(){
+        return $this -> estado_pagada;
+    }
     function getId(){
         return $this -> id;
     }
@@ -46,7 +50,22 @@ class Factura {
         $this -> id = $resultado[0];
         $this -> conexion -> cerrar();
     }
-    
+    function actualizarPago($pago){
+        $this -> conexion -> abrir();
+        
+        $this -> conexion -> ejecutar($this -> FacturaDAO -> actualizarPago($pago));
+        $this -> conexion -> cerrar();
+    }
+    function consultar(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> FacturaDAO -> consultar());
+        $resultado = $this -> conexion -> extraer();
+        $this -> fecha = $resultado[0];
+        $this -> hora = $resultado[1];
+        $this -> precio =$resultado[2];
+        $this -> estado_pagada =$resultado[3];
+        $this -> conexion -> cerrar();
+    }
     function consultarTodos(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> FacturaDAO -> consultarTodos());

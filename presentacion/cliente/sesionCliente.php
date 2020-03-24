@@ -17,20 +17,32 @@ include 'presentacion/cliente/menuCliente.php';
             </div>
         </div>
         <?php 
-//         $solicitud =new Solicitud("","","",$_SESSION["id"]);
-//         $solicitudes =$solicitud ->consultarTodos();
-//         if(count($solicitudes)!=0){
-//            echo "<div class='col-6'>
-//             <div class='tile'>
-//             <div class='tile is-parent is-vertical'>
-//             <article class='tile is-child notification is-primary'>
-//             <p class='title'>Notificacion</p>
-//             <p class='subtitle'>Posees ".count($solicitudes). " solicitudes en espera de asignacion</p>
-//             </article>
-//             </div>
-//             </div>
-//             </div>";
-//         }
+        $mascota = new Mascota("","","","","", $_SESSION["id"]);
+        $mascotas = $mascota ->consultarTodos();
+        $cantidad=0;
+        $cantidad1=0;
+        foreach ($mascotas as $m){
+            $solicitud =new Solicitud("","","","","","",$m->getId());
+            $cantidad+= count($solicitud -> consultarSolicitudesPendientesMascota());
+            $cantidad1 += count($solicitud -> consultarSolicitudesPendientesMascota1());
+        }
+        
+        if($cantidad!=0 || $cantidad1!=0 ){
+            $cantidad+=$cantidad1;
+           echo "<div class='col-6'>
+            <div class='tile'>
+            <div class='tile is-parent is-vertical'>
+            <article class='tile is-child notification is-primary'>
+            <p class='title'>Notificacion</p>
+            <p class='subtitle'>Posees ".$cantidad. " solicitudes en proceso</p>";
+           if($cantidad1!=0 ){
+               echo "<p class='subtitle'>Posees ".$cantidad1. " Facturas en espera</p>";
+           }
+            echo "</article>
+            </div>
+            </div>
+            </div>";
+        }
         
         ?>
         

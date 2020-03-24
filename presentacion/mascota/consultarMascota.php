@@ -49,7 +49,23 @@ $mascotas = $mascota->consultarTodos();
                                         <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>";
                     if($who==1){
                          echo "<a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/mascota/actualizarMascota.php") . "&idMascota=" . $m->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a> ";
-                         echo "<a class='fas fa-user-md' href='index.php?pid=" . base64_encode("presentacion/mascota/generarSolicitud.php") . "&idMascota=" . $m->getId() . "' data-toggle='tooltip' data-placement='left' title='Generar Solicitud'> </a> ";        
+                        $soli = new Solicitud("","","","","","",$m ->getId());
+                        $factus= array();
+                        $factus=$soli -> verificarFactura();
+                        $cont=true;
+                        for($i=0; $i<count($factus); $i++){
+                            if($soli -> EstadoFactura($factus[$i])){
+                                $cont=false;
+                            }
+                        }
+                        if($cont==true){
+                            echo "<a class='fas fa-user-md' href='index.php?pid=" . base64_encode("presentacion/mascota/generarSolicitud.php") . "&idMascota=" . $m->getId() . "' data-toggle='tooltip' data-placement='left' title='Generar Solicitud'> </a> ";
+                        }else{
+                            echo "<a class='fas fa-spinner' href='index.php?pid=" . base64_encode("presentacion/mascota/procesoSolicitudes.php") . "&idMascota=" . $m->getId() . "' data-toggle='tooltip' data-placement='left' title='Ver Proceso Solicitud'> </a> "; 
+                        }
+                         
+                          
+                          
                     }
                          echo  "<a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."&idCliente=".$m->getId()."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>
                            </td>";

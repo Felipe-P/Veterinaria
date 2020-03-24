@@ -39,7 +39,7 @@ include 'presentacion/administrador/menuAdministrador.php';
                             echo "<td>" . $v -> getApellido() . "</td>";
                             echo "<td>" . $v -> getCorreo() . "</td>";
                             echo "<td>" . $v -> getEspecialidad() . "</td>";
-                            echo "<td>" . "<span class='fas " . ($v -> getDsiponibilidad() == 0?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($v -> getDsiponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
+                            echo "<td>" . "<span class='fas " . ($v -> getDisponibilidad() == 0?"fa-check-circle text-success":"fa-times-circle text-danger") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($v -> getDisponibilidad() == 0?"Disponible":"No Disponible") . "' ></span>"."</td>";
                             echo "<td>" . "
                                            <a href='indexAjax.php?pid=". base64_encode("modalVeterinario.php") . "&idVeterinario=" . $v -> getId() . "' data-toggle='modal' data-target='#modalVeterinario' >
                                                 <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
