@@ -29,7 +29,7 @@ $auxiliar -> consultar();
             </tr>
             <tr>
                 <th width="20%">Disponibilidad</th>
-                <td><?php echo (($auxiliar -> getDisponibilidad() == 1)?"<i class='fas fa-check-circle text-success'></i>":"<i class='fas fa-times-circle text-danger'></i>"); ?></td>
+                <td><?php echo (($auxiliar -> getDisponibilidad() == 0)?"<i class='fas fa-check-circle text-success'></i>":"<i class='fas fa-times-circle text-danger'></i>"); ?></td>
             </tr>
 		</tbody>
 	</table>

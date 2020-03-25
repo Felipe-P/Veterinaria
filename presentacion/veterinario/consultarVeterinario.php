@@ -44,7 +44,6 @@ include 'presentacion/administrador/menuAdministrador.php';
                                            <a href='indexAjax.php?pid=". base64_encode("modalVeterinario.php") . "&idVeterinario=" . $v -> getId() . "' data-toggle='modal' data-target='#modalVeterinario' >
                                                 <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                            <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/veterinario/actualizarVeterinario.php") . "&idVeterinario=" . $v -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/veterinario/pdfVeterinario.php") ."&idVeterinario=".$v -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
                                    </td>";
                             echo "</tr>";
                         
@@ -59,11 +58,10 @@ include 'presentacion/administrador/menuAdministrador.php';
 </div>
 
 <div class="modal" id="modalVeterinario">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-  
-  </div>
-    
+	<div class="modal-dialog modal-lg" >
+		<div class="modal-content" id="modalContent">
+		</div>
+	</div>
 </div>
 <script>
 	$('body').on('show.bs.modal', '.modal', function (e) {

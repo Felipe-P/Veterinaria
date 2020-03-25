@@ -6,11 +6,13 @@ $idVeterinario= $_GET['idVeterinario'];
 $veterinario = new Veterinario($idVeterinario);
 $veterinario -> consultar(); 
 ?>
-<header class="modal-card-head">
-      <p class="modal-card-title">Detalles Veterinario</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
+<div class="modal-header">
+	<h5 class="modal-title">Detalle veterinario</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
       <table class="table table-striped table-hover">
 		<tbody>
 			<tr>
@@ -35,5 +37,5 @@ $veterinario -> consultar();
             </tr>
 		</tbody>
 	</table>
-    </section>
+</div>
  

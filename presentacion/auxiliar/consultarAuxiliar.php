@@ -42,7 +42,6 @@ include 'presentacion/administrador/menuAdministrador.php';
                                            <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
                                                 <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                            <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/auxiliar/actualizarAuxiliar.php") . "&idAuxiliar=" . $a -> getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
-                                           <a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/auxiliar/pdfAuxiliar.php") ."&idAuxiliar=".$a -> getId()."' data-toggle='tooltip' data-placement='left' title='Generar PDF'> </a>
                                    </td>";
                             echo "</tr>";
                         

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2020 a las 04:33:49
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 25-03-2020 a las 05:37:35
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,7 +41,7 @@ CREATE TABLE `administrador` (
 --
 
 INSERT INTO `administrador` (`idadministrador`, `nombre`, `apellido`, `correo`, `clave`) VALUES
-(2, 'Shagy', 'El Poderoso', '100@100.com', 'f899139df5e1059396431415e770c6dd');
+(1, 'Kurt', 'Cobain', '100@100.com', 'f899139df5e1059396431415e770c6dd');
 
 -- --------------------------------------------------------
 
@@ -63,8 +63,9 @@ CREATE TABLE `auxiliar` (
 --
 
 INSERT INTO `auxiliar` (`idauxiliar`, `nombre`, `apellido`, `correo`, `clave`, `disponibilidad`) VALUES
-(1, 'Homero', 'Simpson', '15@15.com', '9bf31c7ff062936a96d3c8bd1f8f2ff3', 0),
-(2, 'zoro', 'master', '25@25.com', '8e296a067a37563370ded05f5a3bf3ec', 0);
+(1, 'Homero', 'Simpson', '12@12.com', 'c20ad4d76fe97759aa27a0c99bff6710', 0),
+(2, 'zoro', 'master', '22@22.com', 'b6d767d2f8ed5d21a44b0e5886680cb9', 1),
+(3, 'Carlos', 'Valencia', '32@32.com', '6364d3f0f495b6ab9dcf8d3b5c6e0b01', 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,11 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `correo`, `clave`, `cedula`) VALUES
-(2, 'gacha', 'fernandez', '1@1.com', 'c4ca4238a0b923820dcc509a6f75849b', '1');
+(2, 'gacha', 'fernandez', '1@1.com', 'c4ca4238a0b923820dcc509a6f75849b', '1'),
+(10, 'Paola', 'Torrez', '10@10.com', 'd3d9446802a44259755d38e6d163e820', '10'),
+(20, 'Andres', 'Gonzalez', '20@20.com', '98f13708210194c475687be6106a3b84', '20'),
+(30, 'Felipe', 'Guzman', '30@30.com', '34173cb38f07f89ddbebc2ac9128303f', '30'),
+(40, 'Maria', 'Romero', '40@40.com', 'd645920e395fedad7bbbed0eca3fe2e0', '40');
 
 -- --------------------------------------------------------
 
@@ -135,7 +140,9 @@ INSERT INTO `factura` (`idfactura`, `precio`, `fecha`, `hora`, `estado_pagada`) 
 (2, 20, '2020-03-24', '12:19:06', 1),
 (3, 15, '2020-03-24', '12:23:01', 0),
 (4, 10, '2020-03-24', '01:27:04', 0),
-(5, 20, '2020-03-24', '06:40:21', 1);
+(5, 20, '2020-03-24', '06:40:21', 1),
+(6, 20000, '2020-03-25', '05:24:22', 0),
+(7, 22000, '2020-03-25', '05:25:03', 0);
 
 -- --------------------------------------------------------
 
@@ -181,7 +188,13 @@ CREATE TABLE `mascota` (
 
 INSERT INTO `mascota` (`idmascota`, `nombre`, `sexo`, `fechaNacimiento`, `peso`, `cliente_idcliente`, `tipo_mascota`) VALUES
 (4, 'carla', 'Hembra', '2020-03-11', '45', 2, 1),
-(5, 'yogochamber', 'Macho', '2020-03-05', '52', 2, 3);
+(5, 'yogochamber', 'Macho', '2020-03-05', '52', 2, 3),
+(6, 'Emmy', 'Hembra', '2017-02-16', '10', 10, 2),
+(7, 'Michi', 'Macho', '2019-07-08', '6', 10, 1),
+(8, 'Federico', 'Hembra', '2016-11-14', '2', 10, 3),
+(9, 'Simon', 'Macho', '2017-08-08', '4', 20, 4),
+(10, 'Otto', 'Hembra', '2019-09-14', '1', 20, 5),
+(11, 'Lola', 'Hembra', '2016-10-25', '12', 30, 2);
 
 -- --------------------------------------------------------
 
@@ -203,7 +216,8 @@ CREATE TABLE `reporte_clinico` (
 --
 
 INSERT INTO `reporte_clinico` (`idreporte_clinico`, `fecha`, `diagnostico`, `tratamiento`, `observaciones`, `mascota_idmascota`) VALUES
-(8, '2020-03-24', 'tiene muchas cosas', 'Necesita tratamiento con un Neurología', 'sin observaciones', 5);
+(8, '2020-03-24', 'tiene muchas cosas', 'Necesita tratamiento con un Neurología', 'sin observaciones', 5),
+(9, '2020-03-25', 'Problema nasal', 'Necesita tratamiento con un especialista en Oftalmología', 'Se va a morir =(', 7);
 
 -- --------------------------------------------------------
 
@@ -233,7 +247,17 @@ INSERT INTO `solicitud` (`idsolicitud`, `estado_proceso`, `estado_solicitud`, `v
 (10, 1, 1, 1, 2, 5, 5, '2020-03-23', '04:45:56', NULL),
 (11, 1, 1, NULL, 1, 3, 4, '2020-03-23', '06:09:28', NULL),
 (12, 1, 1, NULL, 1, 4, 4, '2020-03-23', '07:38:25', NULL),
-(17, 0, 1, 3, 3, NULL, 5, '2020-03-24', '06:18:37', 'Neurología');
+(17, 0, 1, 3, 3, NULL, 5, '2020-03-24', '06:18:37', 'Neurología'),
+(18, 1, 1, NULL, 1, 6, 6, '2020-03-25', '05:17:23', NULL),
+(19, 1, 1, 1, 2, NULL, 7, '2020-03-25', '05:17:33', NULL),
+(20, 0, 0, NULL, 2, NULL, 9, '2020-03-25', '05:20:09', NULL),
+(21, 0, 1, NULL, 1, NULL, 10, '2020-03-25', '05:20:15', NULL),
+(22, 1, 1, NULL, 1, 7, 10, '2020-03-25', '05:20:19', NULL),
+(23, 0, 1, NULL, 1, NULL, 10, '2020-03-25', '05:20:22', NULL),
+(24, 0, 1, NULL, 1, NULL, 11, '2020-03-25', '05:21:10', NULL),
+(25, 0, 1, NULL, 1, NULL, 11, '2020-03-25', '05:21:13', NULL),
+(26, 0, 1, NULL, 1, NULL, 11, '2020-03-25', '05:21:23', NULL),
+(27, 0, 0, NULL, 3, NULL, 7, '2020-03-25', '05:26:32', 'Oftalmología');
 
 -- --------------------------------------------------------
 
@@ -254,7 +278,14 @@ CREATE TABLE `solicitud_limpieza` (
 INSERT INTO `solicitud_limpieza` (`solicitud_idsolicitud`, `limpieza_idlimpieza`, `auxiliar_idauxiliar`) VALUES
 (9, 1, 1),
 (11, 2, 1),
-(12, 3, 1);
+(12, 3, 1),
+(18, 5, 1),
+(21, 2, 2),
+(22, 3, 2),
+(23, 1, 2),
+(24, 1, 3),
+(25, 4, 3),
+(26, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -319,9 +350,13 @@ CREATE TABLE `veterinario` (
 --
 
 INSERT INTO `veterinario` (`idveterinario`, `nombre`, `apellido`, `correo`, `clave`, `especialidad`, `disponibilidad`) VALUES
-(1, 'Felipe', 'Poveda', '10@10.com', 'd3d9446802a44259755d38e6d163e820', 8, 0),
-(2, 'Stiven', 'Garcia', '20@20.com', '98f13708210194c475687be6106a3b84', 3, 0),
-(3, 'El Mocho', 'Ramirez', '30@30.com', '34173cb38f07f89ddbebc2ac9128303f', 5, 1);
+(1, 'Felipe', 'Poveda', '11@11.com', '6512bd43d9caa6e02c990b0a82652dca', 8, 1),
+(2, 'Stiven', 'Garcia', '21@21.com', '3c59dc048e8850243be8079a5c74d079', 3, 0),
+(3, 'El Mocho', 'Ramirez', '31@31.com', 'c16a5320fa475530d9583c34fd356ef5', 8, 1),
+(4, 'Chris', 'Brown', '41@41.com', '3416a75f4cea9109507cacd8e2f2aefc', 8, 0),
+(5, 'Andrea', 'Jaramillo', '51@51.com', '2838023a778dfaecdc212708f721b788', 7, 0),
+(6, 'Mateo', 'Caicedo', '61@61.com', '7f39f8317fbdb1988ef4c628eba02591', 2, 0),
+(7, 'Maria', 'Sierra', '71@71.com', 'e2c420d928d4bf8ce0ff2ec19b371514', 4, 0);
 
 --
 -- Índices para tablas volcadas
@@ -430,13 +465,13 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `auxiliar`
 --
 ALTER TABLE `auxiliar`
-  MODIFY `idauxiliar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idauxiliar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
@@ -448,7 +483,7 @@ ALTER TABLE `especialidad`
 -- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `idfactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idfactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `limpieza`
@@ -460,19 +495,19 @@ ALTER TABLE `limpieza`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `idmascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idmascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte_clinico`
 --
 ALTER TABLE `reporte_clinico`
-  MODIFY `idreporte_clinico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idreporte_clinico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitud`
 --
 ALTER TABLE `solicitud`
-  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_mascota`
@@ -490,7 +525,7 @@ ALTER TABLE `tipo_solicitud`
 -- AUTO_INCREMENT de la tabla `veterinario`
 --
 ALTER TABLE `veterinario`
-  MODIFY `idveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

@@ -40,7 +40,7 @@ include 'presentacion/administrador/menuAdministrador.php';
                     echo "<td>" . $c->getCorreo() . "</td>";
                     echo "<td>" . $c->getCedula() . "</td>";
                     echo "<td>" . "
-                                   <a href='indexAjax.php?pid=". base64_encode("presentacion/cliente/modalCliente.php") . "&idCliente=" . $c -> getId() . "' data-toggle='modal' data-target='#modalCliente' >
+                                   <a href='indexAjax.php?pid=". base64_encode("modalCliente.php") . "&idCliente=" . $c -> getId() . "' data-toggle='modal' data-target='#modalCliente' >
                                         <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                    <a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/cliente/actualizarCliente.php") . "&idCliente=" . $c->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a>
                                    <a class='fas fa-paw' href='index.php?pid=".base64_encode("presentacion/mascota/consultarMascota.php") ."&idCliente=".$c->getId()."&who=a' data-toggle='tooltip' data-placement='left' title='Ver mascotas'> </a>
