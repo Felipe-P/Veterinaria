@@ -25,7 +25,7 @@ class MascotaDAO{
     }
     
     function consultar(){
-        return "SELECT m.nombre, sexo, peso, fechaNacimiento, t.nombre
+        return "SELECT m.nombre, sexo, peso, fechaNacimiento, t.nombre, cliente_idcliente
                 FROM mascota m, tipo_mascota t
                 WHERE idmascota =" . $this -> id ." and tipo_mascota=idtipo_mascota";
     }
@@ -65,5 +65,14 @@ class MascotaDAO{
                 FROM mascota m, tipo_mascota t
                 WHERE cliente_idcliente=". $this -> cliente. " and idtipo_mascota=tipo_mascota";
     }
+    
+    function consultarTiposMascotasSolicitudes(){
+        return "SELECT t.nombre, count(idsolicitud)
+                FROM mascota m, tipo_mascota t, solicitud
+                WHERE idtipo_mascota=tipo_mascota and idmascota=mascota_idmascota
+                group by t.nombre
+                 having count(idsolicitud)>1";
+    }
+    
 }
 

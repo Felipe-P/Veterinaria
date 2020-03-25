@@ -16,7 +16,7 @@ if(isset($_POST["generar"])){
         $diagnostico=$_POST["diagnostico"];
         if($tratamiento=="Si"){
             if($_POST["veterinario"]!="------------"){
-                $tratamiento="Necesita tratamiento con un ".$_POST["veterinario"];
+                $tratamiento="Necesita tratamiento con un especialista en ".$_POST["veterinario"];
                 $soli= new Solicitud("", 0,0,"",3, "",$mascota -> getId(),date("Y-m-d"),date("h:i:sa"),$_POST["veterinario"] );
                 $soli -> registraraux();
                 $reporte= new reporteClinico("",$fecha,$diagnostico,$tratamiento,$observacion, $mascota -> getId());

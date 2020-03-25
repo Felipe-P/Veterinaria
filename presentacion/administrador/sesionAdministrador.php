@@ -19,15 +19,15 @@
         $solicitudes =$solicitud ->consultarTodos();
         if(count($solicitudes)!=0){
            echo "<div class='col-6'>
-            <div class='tile'>
-            <div class='tile is-parent is-vertical'>
-            <article class='tile is-child notification is-primary'>
-            <p class='title'>Notificacion</p>
-            <p class='subtitle'>Posees ".count($solicitudes). " solicitudes en espera de asignacion</p>
-            </article>
-            </div>
-            </div>
-            </div>";
+               <article class='message is-link'>
+                <div class='message-header'>
+                <p>Notificacion</p>
+                 
+                 </div>
+                <div class='message-body'>
+                        Posees ".count($solicitudes). " solicitudes en espera de asignacion
+                </div>
+            </article>";
         }
         
         ?>

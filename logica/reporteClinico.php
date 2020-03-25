@@ -147,5 +147,18 @@ class reporteClinico {
         $this -> conexion -> cerrar();
         return $resultados;
     }
+    
+    function consultarTodosPorMascota(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> reporteClinicoDAO -> consultarTodosPorMascota());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i] = new reporteClinico($registro[0],$registro[1],$registro[2], $registro[3], $registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
 }
 ?>

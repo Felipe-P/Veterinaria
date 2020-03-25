@@ -45,7 +45,7 @@ $solicitudes =$solicitud ->consultarSolicitudes();
                                 }else{
                                     echo "<a class='fas fa-money-check-alt' href='index.php?pid=". base64_encode("presentacion/mascota/facturaVeterinario.php") . "&idSolicitud=" . $s  -> getId() . "' data-toggle='tooltip' data-placement='left' title='Facturar'> </a>  ";
                                 }
-                                echo  "<a class='fas fa-file-medical' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>   ";
+                                echo  "<a class='fas fa-file-medical' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."&idSolicitud=".$s -> getId()."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>   ";
                                     
                                   echo "</td>";
                                 echo "</tr>";

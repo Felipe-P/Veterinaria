@@ -23,7 +23,20 @@ class Veterinario extends Persona{
         $this -> conexion = new Conexion();
         $this -> veterinarioDAO = new VeterinarioDAO($id, $nombre, $apellido, $correo, $clave, $especialidad, $disponibilidad);
     }
-        
+    function consultarCantidadVeterinario(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> veterinarioDAO -> consultarCantidadVeterinario());
+        $resultado = $this -> conexion -> extraer();
+        $this -> conexion -> cerrar();
+        return $resultado[0];
+    }
+    function consultarCantidadVeterinarioGeneral(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> veterinarioDAO -> consultarCantidadVeterinarioGeneral());
+        $resultado = $this -> conexion -> extraer();
+        $this -> conexion -> cerrar();
+        return $resultado[0];
+    }
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> veterinarioDAO -> actualizar());
@@ -110,6 +123,20 @@ class Veterinario extends Persona{
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
             $resultados[$i] = new Veterinario($registro[0],$registro[1],$registro[2],$registro[3], "", $registro[4], $registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function losMasTrabajadores(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> veterinarioDAO -> losMasTrabajadores());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i][0] = $registro[0];
+            $resultados[$i][1] = $registro[1];
+            $resultados[$i][2] = $registro[2];
             $i++;
         }
         $this -> conexion -> cerrar();

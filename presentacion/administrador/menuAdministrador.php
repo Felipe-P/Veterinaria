@@ -44,7 +44,15 @@
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/auxiliar/consultarAuxiliar.php")?>>Auxiliar</a></li>
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/veterinario/consultarVeterinario.php")?>>Veterinario</a></li>
 					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/mascota/consultarSolicitudes.php")?>>Solicitudes Pendientes</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/administrador/analisis.php")?>>Analisis</a></li>
 				</ul>
+				<p class="menu-label">Analisis</p>
+				<ul class="menu-list">
+	
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/administrador/analisis.php")?>>Analisis Generales</a></li>
+					<li><a href=<?php echo "index.php?pid=". base64_encode("presentacion/administrador/analisisTrabajadores.php")?>>Analisis Trabajadores</a></li>
+				</ul>
+				
 			</aside>
 		</div>
 		</div>

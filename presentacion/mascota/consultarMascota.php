@@ -67,7 +67,7 @@ $mascotas = $mascota->consultarTodos();
                           
                           
                     }
-                         echo  "<a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."&idCliente=".$m->getId()."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>
+                         echo  "<a class='fas fa-file-pdf' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."&idMascota=".$m->getId()."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>
                            </td>";
                     echo "</tr>";
                 }

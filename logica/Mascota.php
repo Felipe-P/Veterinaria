@@ -79,6 +79,7 @@ class Mascota {
         $this -> peso = $resultado[2];
         $this -> f_nacimiento = $resultado[3];
         $this -> tipo = $resultado[4];
+        $this -> cliente = $resultado[5];
         $this -> conexion -> cerrar();
     }
     function consultarTodo(){
@@ -119,6 +120,19 @@ class Mascota {
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
             $resultados[$i] = new Mascota($registro[0],$registro[1],$registro[2],$registro[3], $registro[4],"",$registro[5]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function consultarTiposMascotasSolicitudes(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> mascotaDAO -> consultarTiposMascotasSolicitudes());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i][0] =$registro[0];
+            $resultados[$i][1] =$registro[1];
             $i++;
         }
         $this -> conexion -> cerrar();

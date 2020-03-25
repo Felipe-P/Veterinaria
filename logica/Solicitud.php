@@ -197,7 +197,26 @@ class Solicitud {
         $this -> conexion = new Conexion();
         $this -> SolicitudDAO = new SolicitudDAO($id, $estadoProceso, $estadoSolicitud, $veterinario, $tipoSolicitud, $factura, $mascota, $fecha, $hora, $aux);
     }
-    
+    function consultarIDmascota1(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarIDmascota1());
+        $resultado = $this -> conexion -> extraer();
+        $this -> mascota = $resultado[0];
+        $this -> conexion -> cerrar();
+    }
+    function DiaMasProductivo(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> DiaMasProductivo());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i][0]= $registro[0];
+            $resultados[$i][1]= $registro[1];
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
     function consultarAux(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarAux());

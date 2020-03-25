@@ -18,7 +18,16 @@ class VeterinarioDAO{
         $this -> especialidad = $especialidad;
         $this -> disponibilidad = $disponibilidad;
     }
-    
+    function consultarCantidadVeterinario(){
+        return "SELECT count(idsolicitud)
+                FROM veterinario v, especialidad e, solicitud
+                where especialidad=idespecialidad and veterinario_idveterinario=idveterinario and e.nombre!='General'";
+    }
+    function consultarCantidadVeterinarioGeneral(){
+        return "SELECT count(idsolicitud)
+                FROM veterinario v, especialidad e, solicitud
+                where especialidad=idespecialidad and veterinario_idveterinario=idveterinario and e.nombre='General'";
+    }
     function actualizar(){
         return "update veterinario set
                 nombre = '" . $this -> nombre . "',
@@ -69,6 +78,9 @@ class VeterinarioDAO{
         return "SELECT DISTINCT idveterinario, v.nombre, apellido, correo, e.nombre, disponibilidad
                 FROM veterinario v, especialidad e
                 WHERE especialidad = idespecialidad and e.nombre='". $tipo ."' and disponibilidad=0";
+    }
+    function losMasTrabajadores(){
+        return "SELECT nombre, apellido, count(idsolicitud) FROM veterinario , solicitud WHERE idveterinario=veterinario_idveterinario group by veterinario_idveterinario having count(idsolicitud)>=1";
     }
 }
 

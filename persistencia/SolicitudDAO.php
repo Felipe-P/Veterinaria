@@ -104,6 +104,20 @@ class SolicitudDAO{
                 FROM solicitud
                 WHERE hora ='" . $this -> hora."' and fecha='". $this -> fecha."' and mascota_idmascota=". $this -> mascota;
     }
+    function consultarIDmascota1(){
+        return "SELECT mascota_idmascota
+                FROM solicitud
+                WHERE idsolicitud=".$this ->id;
+        
+    }
+    function DiaMasProductivo(){
+        return "SELECT fecha, count(fecha)
+                FROM solicitud
+                group by fecha
+                having count(fecha)>1
+                order by fecha DESC";
+    }
+    
     
     function consultarAux(){
         return "SELECT especialidad_aux

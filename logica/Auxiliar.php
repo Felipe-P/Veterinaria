@@ -76,6 +76,14 @@ class Auxiliar extends Persona{
         $this -> disponibilidad = $resultado[3];
         $this -> conexion -> cerrar();
     }
+    function consultarCantidad(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> consultarCantidad());
+        $resultado = $this -> conexion -> extraer();
+        $this -> conexion -> cerrar();
+        return $resultado[0];
+    }
+     
     
     function existeCorreo(){
         $this -> conexion -> abrir();
@@ -109,6 +117,20 @@ class Auxiliar extends Persona{
         $i = 0;
         while (($registro = $this -> conexion -> extraer()) != null) {
             $resultados[$i] = new Auxiliar($registro[0],$registro[1],$registro[2],$registro[3], "",$registro[4]);
+            $i++;
+        }
+        $this -> conexion -> cerrar();
+        return $resultados;
+    }
+    function losMasTrabajadores(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> auxiliarDAO -> losMasTrabajadores());
+        $resultados = array();
+        $i = 0;
+        while (($registro = $this -> conexion -> extraer()) != null) {
+            $resultados[$i][0] = $registro[0];
+            $resultados[$i][1] = $registro[1];
+            $resultados[$i][2] = $registro[2];
             $i++;
         }
         $this -> conexion -> cerrar();

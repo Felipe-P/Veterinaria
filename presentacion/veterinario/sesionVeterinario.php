@@ -20,15 +20,16 @@ include 'presentacion/veterinario/menuVeterinario.php';
         $solicitud =new Solicitud("","","",$_SESSION["id"]);
         $solicitudes =$solicitud ->consultarSolicitudes();
         if(count($solicitudes)!=0){
-           echo "<div class='col-6'>
-            <div class='tile'>
-            <div class='tile is-parent is-vertical'>
-            <article class='tile is-child notification is-primary'>
-            <p class='title'>Notificacion</p>
-            <p class='subtitle'>Posees ".count($solicitudes). " solicitudes de ".($veterinario -> getEspecialidad()=="General"?"revison":"tratamiento")." en espera</p>
+            echo "<div class='col-6'>
+               <article class='message is-link'>
+                <div class='message-header'>
+                <p>Notificacion</p>
+
+                 </div>
+                <div class='message-body'>
+                        Posees ".count($solicitudes). " solicitudes de ".($veterinario -> getEspecialidad()=="General"?"revison":"tratamiento")." en espera
+                </div>
             </article>
-            </div>
-            </div>
             </div>";
         }
         

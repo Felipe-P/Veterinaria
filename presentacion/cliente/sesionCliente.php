@@ -29,19 +29,31 @@ include 'presentacion/cliente/menuCliente.php';
         
         if($cantidad!=0 || $cantidad1!=0 ){
             $cantidad+=$cantidad1;
-           echo "<div class='col-6'>
-            <div class='tile'>
-            <div class='tile is-parent is-vertical'>
-            <article class='tile is-child notification is-primary'>
-            <p class='title'>Notificacion</p>
-            <p class='subtitle'>Posees ".$cantidad. " solicitudes en proceso</p>";
-           if($cantidad1!=0 ){
-               echo "<p class='subtitle'>Posees ".$cantidad1. " Facturas en espera</p>";
+            echo "<div class='col-6'>
+               <article class='message is-link'>
+                <div class='message-header'>
+                <p>Notificacion</p>
+                 
+                 </div>
+                <div class='message-body'>
+                        Posees ". $cantidad. " solicitudes en proceso
+                </div>
+                </article>";
+              
+          
+            if($cantidad1!=0 ){
+                echo "<article class='message is-link'>
+                <div class='message-header'>
+                <p>Notificacion</p>
+                
+                </div>
+                <div class='message-body'>
+                Posees ".$cantidad1. " Facturas en espera
+                </div>
+                </article>";
            }
-            echo "</article>
-            </div>
-            </div>
-            </div>";
+           
+             echo "</div>";
         }
         
         ?>

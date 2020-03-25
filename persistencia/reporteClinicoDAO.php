@@ -32,6 +32,11 @@ class reporteClinicoDAO{
         return "SELECT idespecialidad, nombre
                 FROM especialidad";
     }
+    function consultarTodosPorMascota(){
+        return "SELECT idreporte_clinico, fecha, diagnostico, tratamiento, observaciones
+                FROM reporte_clinico
+                WHERE mascota_idmascota=".$this ->mascota." Order by fecha";
+    }
 }
 
 ?>
