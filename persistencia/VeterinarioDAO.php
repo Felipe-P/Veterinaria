@@ -19,14 +19,14 @@ class VeterinarioDAO{
         $this -> disponibilidad = $disponibilidad;
     }
     function consultarCantidadVeterinario(){
-        return "SELECT count(idsolicitud)
-                FROM veterinario v, especialidad e, solicitud
-                where especialidad=idespecialidad and veterinario_idveterinario=idveterinario and e.nombre!='General'";
+        return "SELECT count(tipo_solicitud_idtipo_solicitud)
+                FROM solicitud
+                where tipo_solicitud_idtipo_solicitud=3";
     }
     function consultarCantidadVeterinarioGeneral(){
-        return "SELECT count(idsolicitud)
-                FROM veterinario v, especialidad e, solicitud
-                where especialidad=idespecialidad and veterinario_idveterinario=idveterinario and e.nombre='General'";
+        return "SELECT count(tipo_solicitud_idtipo_solicitud)
+                FROM solicitud
+                where tipo_solicitud_idtipo_solicitud=2";
     }
     function actualizar(){
         return "update veterinario set
@@ -80,7 +80,7 @@ class VeterinarioDAO{
                 WHERE especialidad = idespecialidad and e.nombre='". $tipo ."' and disponibilidad=0";
     }
     function losMasTrabajadores(){
-        return "SELECT nombre, apellido, count(idsolicitud) FROM veterinario , solicitud WHERE idveterinario=veterinario_idveterinario group by veterinario_idveterinario having count(idsolicitud)>=1";
+        return "SELECT nombre, apellido, count(idsolicitud) FROM veterinario , solicitud WHERE idveterinario=veterinario_idveterinario and estado_proceso=1 group by veterinario_idveterinario having count(idsolicitud)>=1";
     }
 }
 

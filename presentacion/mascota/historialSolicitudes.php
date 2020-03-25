@@ -81,7 +81,7 @@ include 'presentacion/cliente/menuCliente.php';
                                echo "<td>" . "<span class='fas " . ($s1-> getFactura() == ""?"fa-times-circle text-danger":"fa-check-circle text-success") . "' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='" . ($s1 -> getFactura() == ""?"Sin Facturar":"Facturado") . "' ></span>"."</td>";
                                
                                echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $s1 -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
+                                           <a href='indexAjax.php?pid=". base64_encode("modalHistorialSolicitud.php") . "&idSolicitud=" . $s1 -> getId() . "' data-toggle='modal' data-target='#modalHistorialSolicitud' >
                                                 <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>";
                                
                                if($s1-> getFactura()!=""){
@@ -119,7 +119,7 @@ include 'presentacion/cliente/menuCliente.php';
 	</div>
 </div>
 
-<div class="modal" id="modalAuxiliar">
+<div class="modal" id="modalHistorialSolicitud">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>

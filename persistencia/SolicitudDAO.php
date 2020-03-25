@@ -84,6 +84,11 @@ class SolicitudDAO{
                 FROM solicitud, tipo_solicitud t
                 WHERE idsolicitud =" . $this -> id. " and tipo_solicitud_idtipo_solicitud=idtipo_solicitud";
     }
+    function consultarParaModal(){
+        return "SELECT estado_proceso, estado_solicitud, veterinario_idveterinario, t.nombre, m.nombre, fecha, hora, factura_idfactura
+                FROM solicitud, tipo_solicitud t, mascota m
+                WHERE idsolicitud =" . $this -> id. " and tipo_solicitud_idtipo_solicitud=idtipo_solicitud and idmascota=mascota_idmascota";
+    }
     function consultarParaFactura(){
         return "SELECT  tipo, m.nombre
                 FROM solicitud, solicitud_limpieza, limpieza, mascota m

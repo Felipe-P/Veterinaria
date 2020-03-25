@@ -39,7 +39,7 @@ $solicitudes =$solicitud ->consultarHistorialVeterinario();
                                 echo "<td>" . $s -> getFecha() . "</td>";
                                 echo "<td>" . $s -> getHora() . "</td>";
                                 echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $s  -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>  ";
+                                           <a href='indexAjax.php?pid=". base64_encode("modalHistorialVeterinario.php") . "&idSolicitud=" . $s  -> getId() . "&idVeterinario=".$veterinario -> getId()."' data-toggle='modal' data-target='#modalHistorialVeterinario' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>  ";
                                 echo  "<a class='fas fa-file-medical' href='index.php?pid=".base64_encode("presentacion/mascota/pdfmascota.php") ."&idSolicitud=".$s -> getId()."' data-toggle='tooltip' data-placement='left' title='Historial Medico'> </a>  ";
                                   echo "</td>";
                                 echo "</tr>";
@@ -55,7 +55,7 @@ $solicitudes =$solicitud ->consultarHistorialVeterinario();
 	</div>
 </div>
 
-<div class="modal" id="modalAuxiliar">
+<div class="modal" id="modalHistorialVeterinario">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>

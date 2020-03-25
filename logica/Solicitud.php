@@ -335,6 +335,20 @@ class Solicitud {
         $this -> hora = $resultado[6];
         $this -> conexion -> cerrar();
     }
+    function consultarParaModal(){
+        $this -> conexion -> abrir();
+        $this -> conexion -> ejecutar($this -> SolicitudDAO -> consultarParaModal());
+        $resultado = $this -> conexion -> extraer();
+        $this -> estadoProceso = $resultado[0];
+        $this -> estadoSolicitud = $resultado[1];
+        $this -> veterinario = $resultado[2];
+        $this -> tipoSolicitud = $resultado[3];
+        $this -> mascota = $resultado[4];
+        $this -> fecha = $resultado[5];
+        $this -> hora = $resultado[6];
+        $this -> factura =$resultado[7];
+        $this -> conexion -> cerrar();
+    }
     function actualizar(){
         $this -> conexion -> abrir();
         $this -> conexion -> ejecutar($this -> SolicitudDAO -> actualizar());

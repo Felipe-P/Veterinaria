@@ -46,9 +46,9 @@ class AuxiliarDAO{
                 WHERE idauxiliar =" . $this -> id;
     }
     function consultarCantidad(){
-        return "SELECT count(solicitud_idsolicitud)
-                FROM auxiliar, solicitud_limpieza
-                WHERE idauxiliar=auxiliar_idauxiliar";
+        return "SELECT count(tipo_solicitud_idtipo_solicitud)
+                FROM solicitud
+                where tipo_solicitud_idtipo_solicitud=1";
     }
     function existeCorreo(){
         return "SELECT idauxiliar
@@ -75,10 +75,10 @@ class AuxiliarDAO{
     }
     function losMasTrabajadores(){
         return "SELECT nombre, apellido, count(solicitud_idsolicitud)
-                FROM auxiliar, solicitud_limpieza
-                where idauxiliar=auxiliar_idauxiliar
+                FROM auxiliar, solicitud_limpieza, solicitud
+                where idauxiliar=auxiliar_idauxiliar and solicitud_idsolicitud=idsolicitud and estado_proceso=1
                  group by auxiliar_idauxiliar 
-                 having count(solicitud_idsolicitud)>1";
+                 having count(solicitud_idsolicitud)>=1";
     }
 }
 

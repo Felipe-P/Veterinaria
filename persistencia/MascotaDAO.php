@@ -70,8 +70,7 @@ class MascotaDAO{
         return "SELECT t.nombre, count(idsolicitud)
                 FROM mascota m, tipo_mascota t, solicitud
                 WHERE idtipo_mascota=tipo_mascota and idmascota=mascota_idmascota
-                group by t.nombre
-                 having count(idsolicitud)>1";
+                group by t.nombre";
     }
     
 }

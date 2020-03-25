@@ -25,6 +25,11 @@ class Solicitud_LimpiezaDAO{
                 FROM solicitud_limpieza
                 WHERE solicitud_idsolicitud='" . $this -> idSolicitud."'";
     }
+    function consultarParaModal(){
+        return "SELECT l.tipo, a.nombre, a.apellido
+                FROM solicitud_limpieza, limpieza l, auxiliar a
+                WHERE solicitud_idsolicitud=" . $this -> idSolicitud." and limpieza_idlimpieza=idlimpieza and auxiliar_idauxiliar=idauxiliar";
+    }
     function consultartipo(){
         return "SELECT tipo
                 FROM solicitud_limpieza, limpieza

@@ -20,11 +20,11 @@ include 'presentacion/veterinario/menuVeterinario.php';
         $solicitud =new Solicitud("","","",$_SESSION["id"]);
         $solicitudes =$solicitud ->consultarSolicitudes();
         if(count($solicitudes)!=0){
-            echo "<div class='col-6'>
+            echo "<div class='col-6 mt-4'>
                <article class='message is-link'>
                 <div class='message-header'>
                 <p>Notificacion</p>
-
+                    
                  </div>
                 <div class='message-body'>
                         Posees ".count($solicitudes). " solicitudes de ".($veterinario -> getEspecialidad()=="General"?"revison":"tratamiento")." en espera
