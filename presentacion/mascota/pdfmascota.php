@@ -1,5 +1,7 @@
 <?php
 include_once ('pdf/class.ezpdf.php');
+$pdf =new Cezpdf('a4');
+$pdf->selectFont('pdf/fonts/courier.afm');
 if(isset($_GET["idMascota"])){
     $mascota=$_GET["idMascota"];
 }else{
@@ -16,8 +18,6 @@ $cliente = new Cliente($masco ->getCliente());
 $cliente -> consultar();
 $c= array ();
 $c= $reporte ->consultarTodosPorMascota();
-$pdf =new Cezpdf('a4');
-$pdf->selectFont('pdf/fonts/courier.afm');
 $informacionCreador = array (
     'Title'=>'Reporte Clinico De '.$masco -> getNombre(),
     'Author'=>'Usuario',
@@ -55,4 +55,5 @@ for($i=0; $i<sizeof($c);$i++){
    
 }
 $pdf->ezText("\n\n\n",10);
+ob_end_clean(); 
 $pdf->ezStream();
