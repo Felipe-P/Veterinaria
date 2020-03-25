@@ -8,7 +8,7 @@ include 'presentacion/cliente/menuCliente.php';
 
 
 ?>
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 		<div class="col-11">
 			<div class="card">
