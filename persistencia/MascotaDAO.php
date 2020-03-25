@@ -37,7 +37,7 @@ class MascotaDAO{
     
     
     function consultarDetalle(){
-        return "SELECT m.nombre, m.sexo, m.peso, m.fechaNnacimiento, tm.nombre
+        return "SELECT m.nombre, m.sexo, m.peso, m.fechaNacimiento, tm.nombre
                 FROM mascota as m
                 INNER JOIN tipo_mascota tm
                 ON m.tipo_mascota = tm.idtipo_mascota

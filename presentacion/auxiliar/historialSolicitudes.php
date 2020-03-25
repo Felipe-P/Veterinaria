@@ -5,7 +5,7 @@ $solicitud = new Solicitud();
 include 'presentacion/auxiliar/menuAuxiliar.php';
 $solicitudes =$solicitud->consultarHistorialAuxiliar($_SESSION['id']);
 ?>
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 	<div class="col-3"></div>
 			<div class="col-5">
@@ -16,7 +16,7 @@ $solicitudes =$solicitud->consultarHistorialAuxiliar($_SESSION['id']);
 	</div>
 		<div class="col-11">
 			<div class="card">
-				<div class="card-header bg-primary text-white">Consultar Solicitudes En Espera De Limpieza</div>
+				<div class="card-header bg-primary text-white">Consultar Historial De Solicitues De Limpieza</div>
 				<div class="card-body">
 					
 					<table class="table table-striped table-hover">
@@ -45,7 +45,7 @@ $solicitudes =$solicitud->consultarHistorialAuxiliar($_SESSION['id']);
                                echo "<td>" . $s -> getFecha() . "</td>";
                                 echo "<td>" . $s -> getHora() . "</td>";
                                 echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $s  -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>";
+                                           <a href='indexAjax.php?pid=". base64_encode("modalHistorialAuxiliar.php") . "&idSolicitud=" . $s  -> getId() . "&idAuxiliar=".$_SESSION["id"]."' data-toggle='modal' data-target='#modalHistorialAuxiliar' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>";
                             
                                   echo "</td>";
                                 echo "</tr>";
@@ -60,7 +60,7 @@ $solicitudes =$solicitud->consultarHistorialAuxiliar($_SESSION['id']);
 		</div>
 	</div>
 </div>
-<div class="modal" id="modalAuxiliar">
+<div class="modal" id="modalHistorialAuxiliar">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>

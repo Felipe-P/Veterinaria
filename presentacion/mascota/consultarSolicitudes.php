@@ -39,7 +39,7 @@ if( isset($_GET["correcto"])){
 $s=  array();
 $s =$solicitud->consultarTodos();
 ?>
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 		<div class="col-11">
 			<div class="card">
@@ -78,7 +78,7 @@ $s =$solicitud->consultarTodos();
                                 echo "<td>" . $s[$i]  -> getFecha() . "</td>";
                                 echo "<td>" . $s[$i]  -> getHora() . "</td>";
                                 echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $s[$i]  -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' >
+                                           <a href='indexAjax.php?pid=". base64_encode("modalPendientes.php") . "&idSolicitud=" . $s[$i]  -> getId() . "' data-toggle='modal' data-target='#modalPendientes' >
                                                 <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>
                                            <a class='fas fa-calendar-plus' href='index.php?pid=" . ($s[$i]  -> getTipoSolicitud()=="Limpieza"?base64_encode("presentacion/auxiliar/asignarAuxiliar.php"):base64_encode("presentacion/veterinario/asignarVeterinario.php")) . "&idSolicitud=" . $s[$i]  -> getId() . "' data-toggle='tooltip' data-placement='left' title='". ($s[$i]  -> getTipoSolicitud()=="Limpieza"?"Asignar Auxiliar":"Asignar Veterinario")."'> </a>
                                     
@@ -101,14 +101,15 @@ $s =$solicitud->consultarTodos();
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modal" id="modalAuxiliar">
+	<div class="modal" id="modalPendientes">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>
 	</div>
 </div>
+</div>
+
+
 
 <script>
 	$('body').on('show.bs.modal', '.modal', function (e) {

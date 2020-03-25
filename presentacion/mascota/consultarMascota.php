@@ -17,7 +17,7 @@ $mascota = new Mascota("", "", "", "", "",$_GET['idCliente'], "");
 $mascotas = $mascota->consultarTodos();
 
 ?>
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -45,7 +45,7 @@ $mascotas = $mascota->consultarTodos();
                     echo "<td>" . $m -> getPeso() . "</td>";
                     echo "<td>" . $m -> getF_nacimiento() . "</td>";
                     echo "<td>" . "
-                                    <a href='indexAjax.php?pid=". base64_encode("presentacion/mascota/modalMascota.php") . "&idMascota=" . $m -> getId() . "' data-toggle='modal' data-target='#modalMascota' >
+                                    <a href='indexAjax.php?pid=". base64_encode("modalMascota.php") . "&idMascota=" . $m -> getId() . "' data-toggle='modal' data-target='#modalMascota' >
                                         <span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span> </a>";
                     if($who==1){
                          echo "<a class='fas fa-pencil-ruler' href='index.php?pid=" . base64_encode("presentacion/mascota/actualizarMascota.php") . "&idMascota=" . $m->getId() . "' data-toggle='tooltip' data-placement='left' title='Actualizar'> </a> ";

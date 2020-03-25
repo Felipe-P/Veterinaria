@@ -5,7 +5,7 @@ include 'presentacion/veterinario/menuVeterinario.php';
 $solicitud =new Solicitud("","","",$_SESSION["id"]);
 $solicitudes =$solicitud ->consultarSolicitudes();
 ?>
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 		<div class="col-11">
 			<div class="card">
@@ -38,7 +38,7 @@ $solicitudes =$solicitud ->consultarSolicitudes();
                                 echo "<td>" . $s -> getFecha() . "</td>";
                                 echo "<td>" . $s -> getHora() . "</td>";
                                 echo "<td>" . "
-                                           <a href='indexAjax.php?pid=". base64_encode("modalAuxiliar.php") . "&idAuxiliar=" . $s  -> getId() . "' data-toggle='modal' data-target='#modalAuxiliar' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>  ";
+                                           <a href='indexAjax.php?pid=". base64_encode("modalSolicitudVeterinario.php") . "&idSolicitud=" . $s  -> getId() . "' data-toggle='modal' data-target='#modalSolicitudVeterinario' ><span class='fas fa-eye' data-toggle='tooltip' class='tooltipLink' data-placement='left' data-original-title='Ver Detalles' ></span></a>  ";
                                 if($s -> getEstadoProceso()==0)  {
                                     echo "<a class='fas fa-notes-medical' href='index.php?pid=". base64_encode("presentacion/mascota/historialMedico.php") . "&idSolicitud=" . $s  -> getId() . "' data-toggle='tooltip' data-placement='left' title='".($veterinario -> getEspecialidad()=="General"?"Revisar":"Tratar")."'></a>  ";
                                     
@@ -61,7 +61,7 @@ $solicitudes =$solicitud ->consultarSolicitudes();
 	</div>
 </div>
 
-<div class="modal" id="modalAuxiliar">
+<div class="modal" id="modalSolicitudVeterinario">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>

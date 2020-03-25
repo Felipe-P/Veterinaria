@@ -6,14 +6,15 @@ $idCliente = $_GET['idCliente'];
 $cliente = new Cliente($idCliente);
 $cliente -> consultar(); 
 ?>
-<div class="modal-header">
-	<h5 class="modal-title">Detalle cliente</h5>
+
+    <div class="modal-header">
+	<h5 class="modal-title">Detalle Cliente</h5>
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
 <div class="modal-body">
-	<table class="table table-striped table-hover">
+      <table class="table table-striped table-hover">
 		<tbody>
 			<tr>
                 <th width="20%">Nombre</th>
@@ -34,3 +35,5 @@ $cliente -> consultar();
 		</tbody>
 	</table>
 </div>
+    
+  

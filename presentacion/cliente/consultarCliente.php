@@ -6,7 +6,7 @@ $clientes = $cliente->consultarTodos();
 include 'presentacion/administrador/menuAdministrador.php';
 ?>
 
-<div class="container">
+<div class="container col-10">
 	<div class="row">
 	<div class="col-3"></div>
 			<div class="col-6">
@@ -50,17 +50,20 @@ include 'presentacion/administrador/menuAdministrador.php';
                 echo "<tr><td colspan='6'>" . count($clientes) . " registros encontrados</td></tr>"?>
 						</tbody>
 					</table>
+					
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="modal fade" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<div class="modal" id="modalCliente">
 	<div class="modal-dialog modal-lg" >
 		<div class="modal-content" id="modalContent">
 		</div>
 	</div>
+</div>
+
 </div>
 
 <script>
